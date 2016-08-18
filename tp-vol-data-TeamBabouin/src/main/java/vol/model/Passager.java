@@ -20,7 +20,7 @@ public class Passager {
 	private int version;
 	private String nom;
 	private String prenom;
-	private Adresse adresse;
+	private Adresse adresse = new Adresse();
 	private List<Reservation> listReservation = new ArrayList<Reservation>();
 
 	@Embedded

@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Liste des passagers</title>
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+	<h2>
+		<h:outputText value="Liste des passager" />
+	</h2>
+	<h:form id="formulaire">
+		<h:dataTable value="#{clientBean.clients}" var="client">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msg['clients.titre1']}" />
+				</f:facet>
+				<h:outputText value="#{client.idClient}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msg['clients.titre2']}" />
+				</f:facet>
+				<h:outputText value="#{client.civilite}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msg['clients.titre3']}" />
+				</f:facet>
+				<h:outputText value="#{client.nom}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msg['clients.titre4']}" />
+				</f:facet>
+				<h:outputText value="#{client.prenom}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msg['clients.titre5']}" />
+				</f:facet>
+				<h:outputText value="#{client.dtNaissance}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msg['clients.titre6']}" />
+				</f:facet>
+				<h:outputText value="#{client.email}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msg['clients.titre7']}" />
+				</f:facet>
+				<h:outputText value="#{client.telephone}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msg['clients.titre8']}" />
+				</f:facet>
+				<h:outputText value="#{client.professionnel}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msg['clients.titre9']}" />
+				</f:facet>
+				<h:column>
+					<h:outputText value="#{client.adresse.rue}" />
+				</h:column>
+				<h:column>
+					<h:outputText value="#{client.adresse.codePostal}" />
+				</h:column>
+				<h:column>
+					<h:outputText value="#{client.adresse.ville}" />
+				</h:column>
+			</h:column>
+			<h:column>
+				<h:commandLink value="Supprimer" action="#{clientBean.delete}">
+					<f:setPropertyActionListener target="#{clientBean.clientId}"
+						value="#{client.idClient}" />
+				</h:commandLink>
+			</h:column>
+			<h:column>
+				<h:commandLink value="Editer" action="#{clientBean.edit}">
+					<f:setPropertyActionListener target="#{clientBean.clientId}"
+						value="#{client.idClient}" />
+				</h:commandLink>
+			</h:column>
+		</h:dataTable>
+		<h:commandLink value="Ajouter" action="#{clientBean.add}" />
+	</h:form>
+</h:body>
+</html>
+
+
+
