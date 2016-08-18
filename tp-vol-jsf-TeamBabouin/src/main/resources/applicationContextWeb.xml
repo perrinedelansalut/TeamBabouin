@@ -7,3 +7,5 @@
 	<context:component-scan base-package="vol.jsf" />
 </beans>
 
+<!-- je vous aime. -->
+
