@@ -51,11 +51,18 @@
 				<p:message for="passager"/>
 				
 				<h:outputText value="#{msg['reservationEdit.client.nom']}" style="font-weight:bold" />
-				<p:selectOneListbox id="client" value="#{reservationBean.clientId}" size="1" required="true" requiredMessage="#{msg['reservationEdit.etaterreur']}">
+				<p:selectOneListbox id="client" value="#{reservationBean.clientId}" size="1" required="true">
 					<f:selectItem itemLabel="#{msg['reservationEdit.selectionner']}"/>
 					<f:selectItems value="#{reservationBean.clients}" var="client" itemValue="#{client.idCli}" itemLabel="#{client.nom}"/>	
 				</p:selectOneListbox>
 				<p:message for="client"/>
+				
+				<h:outputText value="Vol" style="font-weight:bold" />
+				<p:selectOneListbox id="vol" value="#{reservationBean.reservation.vol.idVol}" size="1" required="true">
+					<f:selectItem itemLabel="#{msg['reservationEdit.selectionner']}"/>
+					<f:selectItems value="#{reservationBean.vols}" var="vol" itemValue="#{vol.idVol}" itemLabel="#{vol.idVol}"/>	
+				</p:selectOneListbox>
+				<p:message for="vol"/>
 				
 		</h:panelGrid>
 			<p>

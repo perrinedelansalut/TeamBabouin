@@ -43,6 +43,10 @@
             <h:outputText value="#{reservation.client.nom}" />
 			</p:column>
 			
+			<p:column headerText="Vol">
+            <h:outputText value="#{reservation.vol.dateDepart}" />
+			</p:column>
+			
 			<p:column headerText="#{msg['reservation.editer']}">
 				 <p:commandButton value="#{msg['reservation.editer']}" action="#{reservationBean.edit}" id="nonAjax" ajax="false">
 					<f:setPropertyActionListener target="#{reservationBean.reservationId}"

@@ -26,7 +26,7 @@ public class Reservation {
 	private Date date;
 	private String numero;
 //	private EtatReservation etat;
-	private Vol vol;
+	private Vol vol=new Vol();
 	private Passager passager=new Passager();
 	private Client client;
 

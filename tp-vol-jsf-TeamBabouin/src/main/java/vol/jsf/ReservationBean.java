@@ -10,9 +10,11 @@ import vol.model.Client;
 import vol.model.EtatReservation;
 import vol.model.Passager;
 import vol.model.Reservation;
+import vol.model.Vol;
 import vol.model.dao.ClientDao;
 import vol.model.dao.PassagerDao;
 import vol.model.dao.ReservationDao;
+import vol.model.dao.VolDao;
 
 @Component
 @Scope("request")
@@ -24,6 +26,8 @@ public class ReservationBean {
 	private PassagerDao passagerDao;
 	@Autowired
 	private ClientDao clientDao;
+	@Autowired
+	private VolDao volDao;
 
 	private Reservation reservation = new Reservation();
 
@@ -69,6 +73,10 @@ public class ReservationBean {
 	public List<Client> getClients() {
 		return clientDao.findAll();
 	}
+	
+	public List<Vol> getVols(){
+		return volDao.findAll();
+	}
 
 	public String add() {
 		return "reservationEdit";
@@ -76,8 +84,12 @@ public class ReservationBean {
 
 	public String edit() {
 		this.reservation = reservationDao.find(reservationId);
+		
 		if (this.reservation.getPassager() == null) {
 			this.reservation.setPassager(new Passager());
+		}
+		if(this.reservation.getVol() == null){
+			this.reservation.setVol(new Vol());
 		}
 		if (this.reservation.getClient() != null) {
 			this.clientId = this.reservation.getClient().getIdCli();
