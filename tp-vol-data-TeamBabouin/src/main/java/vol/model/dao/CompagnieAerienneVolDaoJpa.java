@@ -3,16 +3,13 @@ package vol.model.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import vol.model.AeroportVille;
 import vol.model.CompagnieAerienneVol;
-import vol.model.CompagnieAerienneVolId;
 
 @Repository
 @Transactional
@@ -23,7 +20,7 @@ public class CompagnieAerienneVolDaoJpa implements CompagnieAerienneVolDao {
 	
 	@Override
 	@Transactional(readOnly=true)
-	public CompagnieAerienneVol find(CompagnieAerienneVolId id) {
+	public CompagnieAerienneVol find(Integer id) {
 		return em.find(CompagnieAerienneVol.class, id);
 	}
 

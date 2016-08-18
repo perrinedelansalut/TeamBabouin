@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<f:view locale="#{changeLocale.locale}">
+	<h:head>
+		<title>#{msg['compagnieAerienneEdit.titre']}</title>
+		
+
+	</h:head>
+	<h:body>
+		<ui:include src="/menu.xhtml" />
+
+
+		<h:form id="formulaire">	
+			<p:panel>
+
+				<p:messages autoUpdate="true" />
+
+				<h:inputHidden id="id" value="#{compagnieAerienneBean.compagnieAerienne.id}" />
+				<h:inputHidden id="version" value="#{compagnieAerienneBean.compagnieAerienne.version}" />
+
+				<h:panelGrid id="grid" columns="3" cellpadding="5">
+
+					<h:outputLabel for="nom" value="#{msg['compagnieAerienneEdit.nom']}"
+						style="font-weight:bold" />
+					<p:inputText id="nom" value="#{compagnieAerienneBean.compagnieAerienne.nom}"
+						required="true" requiredMessage="#{msg['compagnieAerienneEdit.err2']}"
+						validatorMessage="#{msg['compagnieAerienneEdit.err1']}">
+						<f:validateLength minimum="3" />
+					</p:inputText>
+					<p:message for="nom" />
+
+					
+
+				</h:panelGrid>
+				<p>
+					<p:commandButton type="submit" value="#{msg['compagnieAerienneEdit.save']}"
+						action="#{compagnieAerienneBean.save}" ajax="false" />
+					<p:commandButton value="#{msg['compagnieAerienneEdit.return']}"
+						action="compagnieAerienne" immediate="true" ajax="false" />
+				</p>
+
+			</p:panel>
+			
+			
+			
+		</h:form>
+	</h:body>
+</f:view>
+</html>
+
