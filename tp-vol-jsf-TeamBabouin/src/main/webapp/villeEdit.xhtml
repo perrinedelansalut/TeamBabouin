@@ -9,12 +9,11 @@
 <f:view locale="#{changeLocale.locale}">
 	<h:head>
 		<title>#{msg['villeEdit.titre']}</title>
-		
-
 	</h:head>
 	<h:body>
-		<ui:include src="/menu.xhtml" />
-
+		<ui:include src="/menu.xhtml">
+			<ui:param name="i" value="9" />
+		</ui:include>
 
 		<h:form id="formulaire">	
 			<p:panel>

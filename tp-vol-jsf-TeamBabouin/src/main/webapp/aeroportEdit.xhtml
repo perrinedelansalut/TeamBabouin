@@ -9,20 +9,22 @@
 <f:view locale="#{changeLocale.locale}">
 	<h:head>
 		<title>"#{msg['aeroportEdit.titre']}"</title>
-		
+
 
 	</h:head>
 	<h:body>
-		<ui:include src="/menu.xhtml" />
+		<ui:include src="/menu.xhtml">
+			<ui:param name="i" value="1" />
+		</ui:include>
 
 
-		<h:form id="formulaire">	
+		<h:form id="formulaire">
 			<p:panel>
 
 				<p:messages autoUpdate="true" />
 
 				<h:inputHidden id="id" value="#{aeroportBean.aeroport.idAer}" />
-<!-- 				<h:inputHidden id="version" value="#{aeroportBean.aeroport.version}" /> -->
+				<!-- 				<h:inputHidden id="version" value="#{aeroportBean.aeroport.version}" /> -->
 
 				<h:panelGrid id="grid" columns="3" cellpadding="5">
 
@@ -35,7 +37,7 @@
 					</p:inputText>
 					<p:message for="nom" />
 
-					
+
 
 				</h:panelGrid>
 				<p>
@@ -46,9 +48,9 @@
 				</p>
 
 			</p:panel>
-			
-			
-			
+
+
+
 		</h:form>
 	</h:body>
 </f:view>

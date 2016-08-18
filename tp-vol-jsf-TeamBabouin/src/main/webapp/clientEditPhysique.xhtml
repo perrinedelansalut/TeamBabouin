@@ -3,13 +3,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <f:view>
 	<h:head>
 		<title>#{msg['clientEditPhysique.titreOnglet']}</title>
 	</h:head>
 	<h:body>
+		<ui:include src="/menu.xhtml">
+			<ui:param name="i" value="3" />
+		</ui:include>
+		
 		<h:form id="formulaire">
 
 			<p:panel header="Validate">

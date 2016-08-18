@@ -11,49 +11,60 @@
 		<title>"#{msg['volEdit.titre']}"</title>
 	</h:head>
 	<h:body>
-	<ui:include src="/menu.xhtml" />
+		<ui:include src="/menu.xhtml">
+			<ui:param name="i" value="10" />
+		</ui:include>
+
 		<h:form id="formulaire">
-		<p:panel>
-		
-		<p:messages autoUpdate="true" />
-		
-		
-			<h:inputHidden value="#{volBean.vol.idVol}"/>
-<!-- 			<h:inputHidden value="#{volBean.vol.version}"/> -->
-			<h:panelGrid columns="3" cellpadding="5">
-                
-                <h:outputText value="#{msg['volEdit.valeurdatedepart']}" style="font-weight:bold" />
-				<p:inputText id="dtResa" value="#{volBean.vol.dateDepart}" converterMessage="#{msg['volEdit.dateerreur1']}">
-					<f:convertDateTime pattern="dd/MM/yyyy"/>
-				</p:inputText>
-				<p:message for="dtResa"/>
-				
-				<h:outputText value="#{msg['volEdit.valeurdatearrivee']}" style="font-weight:bold" />
-				<p:inputText id="dtResa2" value="#{volBean.vol.dateArrivee}" converterMessage="#{msg['volEdit.dateerreur2']}">
-					<f:convertDateTime pattern="dd/MM/yyyy"/>
-				</p:inputText>
-				<p:message for="dtResa2"/>
-				
-				<h:outputText value="#{msg['volEdit.valeurheuredepart']}" style="font-weight:bold" />
-				<p:inputText id="dtResa3" value="#{volBean.vol.heureDepart}" converterMessage="#{msg['volEdit.dateerreur3']}">
-					<f:convertDateTime pattern="HH:mm"/>
-				</p:inputText>
-				<p:message for="dtResa3"/>
-				
-				<h:outputText value="#{msg['volEdit.valeurheurearrivee']}" style="font-weight:bold" />
-				<p:inputText id="dtResa4" value="#{volBean.vol.heureArrivee}" converterMessage="#{msg['volEdit.dateerreur4']}">
-					<f:convertDateTime pattern="HH:mm"/>
-				</p:inputText>
-				<p:message for="dtResa4"/>
-                
-                
-		</h:panelGrid>
-			<p>
-				<p:commandButton type="submit" action="#{volBean.save}" ajax="false"
-					value="#{msg['volEdit.valider']}"></p:commandButton>  
-				<p:commandButton  action="vol" immediate="true"  ajax="false"
-					value="#{msg['volEdit.retour']}" ></p:commandButton>
-			</p>
+			<p:panel>
+
+				<p:messages autoUpdate="true" />
+
+
+				<h:inputHidden value="#{volBean.vol.idVol}" />
+				<!-- 			<h:inputHidden value="#{volBean.vol.version}"/> -->
+				<h:panelGrid columns="3" cellpadding="5">
+
+					<h:outputText value="#{msg['volEdit.valeurdatedepart']}"
+						style="font-weight:bold" />
+					<p:inputText id="dtResa" value="#{volBean.vol.dateDepart}"
+						converterMessage="#{msg['volEdit.dateerreur1']}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:inputText>
+					<p:message for="dtResa" />
+
+					<h:outputText value="#{msg['volEdit.valeurdatearrivee']}"
+						style="font-weight:bold" />
+					<p:inputText id="dtResa2" value="#{volBean.vol.dateArrivee}"
+						converterMessage="#{msg['volEdit.dateerreur2']}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:inputText>
+					<p:message for="dtResa2" />
+
+					<h:outputText value="#{msg['volEdit.valeurheuredepart']}"
+						style="font-weight:bold" />
+					<p:inputText id="dtResa3" value="#{volBean.vol.heureDepart}"
+						converterMessage="#{msg['volEdit.dateerreur3']}">
+						<f:convertDateTime pattern="HH:mm" />
+					</p:inputText>
+					<p:message for="dtResa3" />
+
+					<h:outputText value="#{msg['volEdit.valeurheurearrivee']}"
+						style="font-weight:bold" />
+					<p:inputText id="dtResa4" value="#{volBean.vol.heureArrivee}"
+						converterMessage="#{msg['volEdit.dateerreur4']}">
+						<f:convertDateTime pattern="HH:mm" />
+					</p:inputText>
+					<p:message for="dtResa4" />
+
+
+				</h:panelGrid>
+				<p>
+					<p:commandButton type="submit" action="#{volBean.save}"
+						ajax="false" value="#{msg['volEdit.valider']}"></p:commandButton>
+					<p:commandButton action="vol" immediate="true" ajax="false"
+						value="#{msg['volEdit.retour']}"></p:commandButton>
+				</p>
 			</p:panel>
 		</h:form>
 	</h:body>
