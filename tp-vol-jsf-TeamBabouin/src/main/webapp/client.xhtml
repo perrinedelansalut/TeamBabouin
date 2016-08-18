@@ -4,29 +4,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 	<title>Liste des clients</title>
 	<h:outputStylesheet library="css" name="styles.css" />
 </h:head>
-<h:body
-	style="background-image: url('${request.contextPath}/resources/images/standard.jpg');">
-	<h2>
-		<h:outputText value="Liste des clients" />
-	</h2>
+<h:body>
+<ui:include src="/menu.xhtml" />
 	<h:form id="formulaire">
 		<p:dataTable value="#{clientBean.clients}" var="client">
 
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="Id" />
+					<h:outputText value="#{msg['client.id']}" />
 				</f:facet>
 				<h:outputText value="#{client.idCli}" />
 			</p:column>
 
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="Titre" />
+					<h:outputText value="#{msg['client.titre']}" />
 				</f:facet>
 				<h:outputText value="#{client.titre.label}" />
 			</p:column>
@@ -34,7 +32,7 @@
 
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="Nom" />
+					<h:outputText value="#{msg['client.nom']}" />
 				</f:facet>
 				<h:outputText value="#{client.nom}" />
 			</p:column>
@@ -42,7 +40,7 @@
 
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="Prénom" />
+					<h:outputText value="#{msg['client.prenom']}" />
 				</f:facet>
 				<h:outputText value="#{client.prenom}" rendered="#{client.typeClient == 'EI' || client.typeClient == 'Physique' }" />
 			</p:column>
@@ -50,7 +48,7 @@
 
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="Siret" />
+					<h:outputText value="#{msg['client.siret']}" />
 				</f:facet>
 				<h:outputText value="#{client.siret}" rendered="#{client.typeClient == 'Moral'}"/>
 			</p:column>
@@ -58,83 +56,83 @@
 			
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="Téléphone" />
+					<h:outputText value="#{msg['client.telephone']}" />
 				</f:facet>
 				<h:outputText value="#{client.numeroTel}" />
 			</p:column>
 			
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="Fax" />
+					<h:outputText value="#{msg['client.fax']}" />
 				</f:facet>
 				<h:outputText value="#{client.numeroFax}" />
 			</p:column>
 
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="Email" />
+					<h:outputText value="#{msg['client.email']}" />
 				</f:facet>
 				<h:outputText value="#{client.email}" />
 			</p:column>
 
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="Rue" />
+					<h:outputText value="#{msg['client.adresse.rue']}" />
 				</f:facet>
 				<h:outputText value="#{client.adresse.adresse}" />
 			</p:column>
 
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="Code postal" />
+					<h:outputText value="#{msg['client.codePostal']}" />
 				</f:facet>
 				<h:outputText value="#{client.adresse.codePostal}" />
 			</p:column>
 
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="Ville" />
+					<h:outputText value="#{msg['client.adresse.ville']}" />
 				</f:facet>
 				<h:outputText value="#{client.adresse.ville}" />
 			</p:column>
 			
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="Pays" />
+					<h:outputText value="#{msg['client.adresse.pays']}" />
 				</f:facet>
 				<h:outputText value="#{client.adresse.pays}" />
 			</p:column>
 			
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="login" />
+					<h:outputText value="#{msg['client.log.login']}" />
 				</f:facet>
 				<h:outputText value="#{client.log.login}" />
 			</p:column>
 
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="Mot de passe" />
+					<h:outputText value="#{msg['client.log.mdp']}" />
 				</f:facet>
 				<h:outputText value="#{client.log.motDePasse}" />
 			</p:column>
 
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="Admin" />
+					<h:outputText value="#{msg['client.log.admin']}" />
 				</f:facet>
 				<h:outputText value="#{client.log.admin}" />
 			</p:column>
 
 			<p:column>
-				<p:commandButton value="Editer" action="#{clientBean.edit}">
+				<p:commandButton value="#{msg['client.edit']}" action="#{clientBean.edit}">
 					<f:setPropertyActionListener target="#{clientBean.clientId}"
 						value="#{client.idCli}" />
 				</p:commandButton>
 			</p:column>
 
 			<p:column>
-				<p:commandButton value="Supprimer" action="#{clientBean.delete}">
+				<p:commandButton value="#{msg['client.delete']}" action="#{clientBean.delete}">
 					<f:setPropertyActionListener target="#{clientBean.clientId}"
 						value="#{client.idCli}" />
 				</p:commandButton>
@@ -142,9 +140,9 @@
 
 		</p:dataTable>
 
-		<p:commandButton value="Ajouter un client EI" action="#{clientBean.addEI}" />
-		<p:commandButton value="Ajouter un client Physique" action="#{clientBean.addPhysique}" />
-		<p:commandButton value="Ajouter un client Moral" action="#{clientBean.addMoral}" />
+		<p:commandButton value="#{msg['client.addEI']}" action="#{clientBean.addEI}" />
+		<p:commandButton value="#{msg['client.adPhysiqye']}" action="#{clientBean.addPhysique}" />
+		<p:commandButton value="#{msg['client.addMoral']}" action="#{clientBean.addMoral}" />
 
 	</h:form>
 </h:body>
