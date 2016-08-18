@@ -1,7 +1,7 @@
 package vol.model;
 
 public enum EtatReservation {
-	ouvert("etatReservation.ouvert"), ferme("etatReservation.ferme");
+	ouvert("Ouvert"), ferme("Fermé");
 	
 	private final String label;
 	
