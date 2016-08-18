@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<f:view locale="#{changeLocale.locale}">
+	<h:head>
+		<title>"#{msg['villeEdit.titre']}"</title>
+		
+
+	</h:head>
+	<h:body>
+		<ui:include src="/menu.xhtml" />
+
+
+		<h:form id="formulaire">	
+			<p:panel>
+
+				<p:messages autoUpdate="true" />
+
+				<h:inputHidden id="id" value="#{villerBean.ville.idVil}" />
+				<h:inputHidden id="version" value="#{villeBean.ville.version}" />
+
+				<h:panelGrid id="grid" columns="3" cellpadding="5">
+
+					<h:outputLabel for="nom" value="#{msg['villeEdit.nom']}"
+						style="font-weight:bold" />
+					<p:inputText id="nom" value="#{villeBean.ville.nom}"
+						required="true" requiredMessage="#{msg['villeEdit.err2']}"
+						validatorMessage="#{msg['villeEdit.err1']}">
+						<f:validateLength minimum="3" />
+					</p:inputText>
+					<p:message for="nom" />
+
+					
+
+				</h:panelGrid>
+				<p>
+					<p:commandButton type="submit" value="#{msg['villeEdit.save']}"
+						action="#{villeBean.save}" ajax="false" />
+					<p:commandButton value="#{msg['villeEdit.return']}"
+						action="ville" immediate="true" ajax="false" />
+				</p>
+
+			</p:panel>
+			
+			
+			
+		</h:form>
+	</h:body>
+</f:view>
+</html>
+
