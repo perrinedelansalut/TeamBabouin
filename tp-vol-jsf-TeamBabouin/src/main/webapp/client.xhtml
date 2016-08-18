@@ -3,7 +3,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Liste des clients</title>
 	<h:outputStylesheet library="css" name="styles.css" />
@@ -14,134 +15,136 @@
 		<h:outputText value="Liste des clients" />
 	</h2>
 	<h:form id="formulaire">
-		<h:dataTable value="#{clientBean.clients}" var="client">
+		<p:dataTable value="#{clientBean.clients}" var="client">
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">
 					<h:outputText value="Id" />
 				</f:facet>
 				<h:outputText value="#{client.idCli}" />
-			</h:column>
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">
 					<h:outputText value="Titre" />
 				</f:facet>
 				<h:outputText value="#{client.titre.label}" />
-			</h:column>
+			</p:column>
 
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">
 					<h:outputText value="Nom" />
 				</f:facet>
 				<h:outputText value="#{client.nom}" />
-			</h:column>
+			</p:column>
 
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">
 					<h:outputText value="Prénom" />
 				</f:facet>
 				<h:outputText value="#{client.prenom}" rendered="#{client.typeClient == 'EI' || client.typeClient == 'Physique' }" />
-			</h:column>
+			</p:column>
 
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">
 					<h:outputText value="Siret" />
 				</f:facet>
 				<h:outputText value="#{client.siret}" rendered="#{client.typeClient == 'Moral'}"/>
-			</h:column>
+			</p:column>
 
 			
-			<h:column>
+			<p:column>
 				<f:facet name="header">
 					<h:outputText value="Téléphone" />
 				</f:facet>
 				<h:outputText value="#{client.numeroTel}" />
-			</h:column>
+			</p:column>
 			
-			<h:column>
+			<p:column>
 				<f:facet name="header">
 					<h:outputText value="Fax" />
 				</f:facet>
 				<h:outputText value="#{client.numeroFax}" />
-			</h:column>
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">
 					<h:outputText value="Email" />
 				</f:facet>
 				<h:outputText value="#{client.email}" />
-			</h:column>
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">
 					<h:outputText value="Rue" />
 				</f:facet>
 				<h:outputText value="#{client.adresse.adresse}" />
-			</h:column>
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">
 					<h:outputText value="Code postal" />
 				</f:facet>
 				<h:outputText value="#{client.adresse.codePostal}" />
-			</h:column>
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">
 					<h:outputText value="Ville" />
 				</f:facet>
 				<h:outputText value="#{client.adresse.ville}" />
-			</h:column>
+			</p:column>
 			
-			<h:column>
+			<p:column>
 				<f:facet name="header">
 					<h:outputText value="Pays" />
 				</f:facet>
 				<h:outputText value="#{client.adresse.pays}" />
-			</h:column>
+			</p:column>
 			
-			<h:column>
+			<p:column>
 				<f:facet name="header">
 					<h:outputText value="login" />
 				</f:facet>
 				<h:outputText value="#{client.log.login}" />
-			</h:column>
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">
 					<h:outputText value="Mot de passe" />
 				</f:facet>
 				<h:outputText value="#{client.log.motDePasse}" />
-			</h:column>
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">
 					<h:outputText value="Admin" />
 				</f:facet>
 				<h:outputText value="#{client.log.admin}" />
-			</h:column>
+			</p:column>
 
-<!-- 			<h:column> -->
-<!-- 				<h:commandLink value="Editer" action="#{clientBean.edit}"> -->
-<!-- 					<f:setPropertyActionListener target="#{clientBean.clientId}" -->
-<!-- 						value="#{client.id}" /> -->
-<!-- 				</h:commandLink> -->
-<!-- 			</h:column> -->
-
-			<h:column>
-				<h:commandLink value="Supprimer" action="#{clientBean.delete}">
+			<p:column>
+				<p:commandButton value="Editer" action="#{clientBean.edit}">
 					<f:setPropertyActionListener target="#{clientBean.clientId}"
-						value="#{client.id}" />
-				</h:commandLink>
-			</h:column>
+						value="#{client.idCli}" />
+				</p:commandButton>
+			</p:column>
 
-		</h:dataTable>
+			<p:column>
+				<p:commandButton value="Supprimer" action="#{clientBean.delete}">
+					<f:setPropertyActionListener target="#{clientBean.clientId}"
+						value="#{client.idCli}" />
+				</p:commandButton>
+			</p:column>
 
-<!-- 		<h:commandLink value="Ajouter" action="#{clientBean.add}" /> -->
+		</p:dataTable>
+
+		<p:commandButton value="Ajouter un client EI" action="#{clientBean.addEI}" />
+		<p:commandButton value="Ajouter un client Physique" action="#{clientBean.addPhysique}" />
+		<p:commandButton value="Ajouter un client Moral" action="#{clientBean.addMoral}" />
 
 	</h:form>
 </h:body>
