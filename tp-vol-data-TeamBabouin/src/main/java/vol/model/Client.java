@@ -51,8 +51,8 @@ public abstract class Client {
 	private Titre titre;
 	private int version;
 	private List<Reservation> reservations = new ArrayList<Reservation>();
-	private Adresse adresse;
-	private Login Log;
+	private Adresse adresse = new Adresse();
+	private Login Log = new Login();
 
 	
 	 public Client() {
@@ -65,7 +65,6 @@ public abstract class Client {
 	}
 
 	@Embedded
-	@Valid
 	public Adresse getAdresse() {
 		return adresse;
 	}
@@ -82,7 +81,6 @@ public abstract class Client {
 	}
 
 	@Embedded
-	@Valid
 	public Login getLog() {
 		return Log;
 	}

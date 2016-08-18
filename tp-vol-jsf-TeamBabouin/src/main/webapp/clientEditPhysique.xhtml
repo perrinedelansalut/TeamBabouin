@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view>
+	<h:head>
+		<title>#{msg['clientEditPhysique.titreOnglet']}</title>
+	</h:head>
+	<h:body>
+		<h:form id="formulaire">
+
+			<p:panel header="Validate">
+				<p:messages autoUpdate="true" />
+				<h:inputHidden value="#{clientBean.selectedClientPhysique.idCli}" />
+				<h:inputHidden value="#{clientBean.selectedClientPhysique.version}" />
+				<h:panelGrid id="grid" columns="3" cellpadding="5">
+
+					<h:outputText value="#{msg['clientEdit.titre']}" />
+					<p:selectOneMenu id="civilite"
+						value="#{clientBean.selectedClientPhysique.titre}" size="1">
+						<f:selectItem itemLabel="" />
+						<f:selectItems value="#{clientBean.titres}" var="titre"
+							itemValue="#{titre}" itemLabel="#{titre.label}" />
+					</p:selectOneMenu>
+					<p:message for="civilite" />
+
+					<h:outputText value="#{msg['clientEdit.nom']}" styleClass="info" />
+					<p:inputText id="nom"
+						value="#{clientBean.selectedClientPhysique.nom}" required="true"
+						requiredMessage="#{msg['clientEdit.err2']}"
+						validatorMessage="#{msg['clientEdit.err1']}">
+						<f:validateLength minimum="2" />
+					</p:inputText>
+					<p:message for="nom" />
+
+					<h:outputText value="#{msg['clientEdit.prenom']}" styleClass="info" />
+					<p:inputText id="prenom"
+						value="#{clientBean.selectedClientPhysique.prenom}" />
+					<p:message for="prenom" />
+
+					<h:outputText value="#{msg['clientEdit.telephone']}" styleClass="info" />
+					<p:inputText id="telephone"
+						value="#{clientBean.selectedClientPhysique.numeroTel}">
+					</p:inputText>
+					<p:message for="telephone" />
+
+					<h:outputText value="#{msg['clientEdit.fax']}" styleClass="info" />
+					<p:inputText id="fax"
+						value="#{clientBean.selectedClientPhysique.numeroFax}">
+					</p:inputText>
+					<p:message for="fax" />
+
+					<h:outputText value="#{msg['clientEdit.email']}" styleClass="info" />
+					<p:inputText id="email"
+						value="#{clientBean.selectedClientPhysique.email}" required="true"
+						requiredMessage="#{msg['clientEdit.err2']}"
+						converterMessage="#{msg['clientEdit.err2']}"
+						validatorMessage="#{msg['clientEdit.err1']}">
+						<f:validateRegex
+							pattern="[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}" />
+					</p:inputText>
+					<p:message for="email" />
+
+					<h:outputText value="#{msg['clientEdit.log.login']}" />
+					<p:inputText id="login"
+						value="#{clientBean.selectedClientPhysique.log.login}" />
+					<p:message for="login" />
+
+					<h:outputText value="#{msg['clientEdit.log.mdp']}" />
+					<p:password id="motDePasse"
+						value="#{clientBean.selectedClientPhysique.log.motDePasse}" />
+					<p:message for="motDePasse" />
+
+					<h:outputText value="#{msg['clientEdit.log.admin']}" />
+					<p:selectBooleanCheckbox id="admin"
+						value="#{clientBean.selectedClientPhysique.log.admin}" />
+					<p:message for="admin" />
+
+					<h:outputText value="#{msg['clientEdit.adresse.rue']}" />
+					<p:inputText id="rue"
+						value="#{clientBean.selectedClientPhysique.adresse.adresse}" />
+					<p:message for="rue" />
+
+					<h:outputText value="#{msg['clientEdit.adresse.codePostal']}" />
+					<p:inputText id="codePostal"
+						value="#{clientBean.selectedClientPhysique.adresse.codePostal}" />
+					<p:message for="codePostal" />
+
+					<h:outputText value="#{msg['clientEdit.adresse.ville']}" />
+					<p:inputText id="ville"
+						value="#{clientBean.selectedClientPhysique.adresse.ville}" />
+					<p:message for="ville" />
+					
+					<h:outputText value="#{msg['clientEdit.adresse.pays']}" />
+					<p:inputText id="pays"
+						value="#{clientBean.selectedClientEI.adresse.pays}" />
+					<p:message for="pays" />
+				</h:panelGrid>
+				<p>
+					<p:commandButton type="submit" id="submit"
+						action="#{clientBean.savePhysique}" value="#{msg['clientEdit.save']}" ajax="false"/>
+					<p:commandButton id="retour" action="client" immediate="true"
+						value="#{msg['clientEdit.return']}" ajax="false"/>
+				</p>
+			</p:panel>
+		</h:form>
+	</h:body>
+</f:view>
+</html>
+

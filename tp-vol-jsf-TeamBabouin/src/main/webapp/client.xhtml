@@ -7,7 +7,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
-	<title>Liste des clients</title>
+	<title>#{msg['client.titreOnglet']}</title>
 	<h:outputStylesheet library="css" name="styles.css" />
 </h:head>
 <h:body>
@@ -125,14 +125,14 @@
 			</p:column>
 
 			<p:column>
-				<p:commandButton value="#{msg['client.edit']}" action="#{clientBean.edit}">
+				<p:commandButton value="#{msg['client.edit']}" action="#{clientBean.edit}" ajax="false">
 					<f:setPropertyActionListener target="#{clientBean.clientId}"
 						value="#{client.idCli}" />
 				</p:commandButton>
 			</p:column>
 
 			<p:column>
-				<p:commandButton value="#{msg['client.delete']}" action="#{clientBean.delete}">
+				<p:commandButton value="#{msg['client.delete']}" action="#{clientBean.delete}" ajax="false">
 					<f:setPropertyActionListener target="#{clientBean.clientId}"
 						value="#{client.idCli}" />
 				</p:commandButton>
@@ -140,9 +140,9 @@
 
 		</p:dataTable>
 
-		<p:commandButton value="#{msg['client.addEI']}" action="#{clientBean.addEI}" />
-		<p:commandButton value="#{msg['client.addPhysique']}" action="#{clientBean.addPhysique}" />
-		<p:commandButton value="#{msg['client.addMoral']}" action="#{clientBean.addMoral}" />
+		<p:commandButton value="#{msg['client.addEI']}" action="#{clientBean.addEI}" ajax="false"/>
+		<p:commandButton value="#{msg['client.addPhysique']}" action="#{clientBean.addPhysique}" ajax="false"/>
+		<p:commandButton value="#{msg['client.addMoral']}" action="#{clientBean.addMoral}" ajax="false"/>
 
 	</h:form>
 </h:body>
