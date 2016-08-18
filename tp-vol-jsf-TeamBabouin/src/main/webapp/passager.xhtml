@@ -13,88 +13,59 @@
 		<h:outputText value="Liste des passager" />
 	</h2>
 	<h:form id="formulaire">
-		<h:dataTable value="#{clientBean.clients}" var="client">
+		<h:dataTable value="#{passagerBean.passagers}" var="passager">
 			<h:column>
 				<f:facet name="header">
-					<h:outputText value="#{msg['clients.titre1']}" />
+					<h:outputText value="#{msg['passager.id']}" />
 				</f:facet>
-				<h:outputText value="#{client.idClient}" />
+				<h:outputText value="#{passager.idPas}" />
 			</h:column>
 			<h:column>
 				<f:facet name="header">
-					<h:outputText value="#{msg['clients.titre2']}" />
+					<h:outputText value="#{msg['passager.nom']}" />
 				</f:facet>
-				<h:outputText value="#{client.civilite}" />
+				<h:outputText value="#{passager.nom}" />
 			</h:column>
 			<h:column>
 				<f:facet name="header">
-					<h:outputText value="#{msg['clients.titre3']}" />
+					<h:outputText value="#{msg['passager.prenom']}" />
 				</f:facet>
-				<h:outputText value="#{client.nom}" />
+				<h:outputText value="#{passager.prenom}" />
 			</h:column>
 			<h:column>
 				<f:facet name="header">
-					<h:outputText value="#{msg['clients.titre4']}" />
+					<h:outputText value="#{msg['passager.adresse.rue']}" />
 				</f:facet>
-				<h:outputText value="#{client.prenom}" />
+				<h:outputText value="#{passager.adresse.rue}" />
 			</h:column>
 			<h:column>
 				<f:facet name="header">
-					<h:outputText value="#{msg['clients.titre5']}" />
+					<h:outputText value="#{msg['passager.adresse.codePostal']}" />
 				</f:facet>
-				<h:outputText value="#{client.dtNaissance}">
-					<f:convertDateTime pattern="dd/MM/yyyy" />
-				</h:outputText>
+				<h:outputText value="#{passager.adresse.codePostal}"/>
 			</h:column>
+			
 			<h:column>
 				<f:facet name="header">
-					<h:outputText value="#{msg['clients.titre6']}" />
+					<h:outputText value="#{msg['passager.adresse.ville']}" />
 				</f:facet>
-				<h:outputText value="#{client.email}" />
+				<h:outputText value="#{passager.adresse.ville}" />
 			</h:column>
 			<h:column>
-				<f:facet name="header">
-					<h:outputText value="#{msg['clients.titre7']}" />
-				</f:facet>
-				<h:outputText value="#{client.telephone}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="#{msg['clients.titre8']}" />
-				</f:facet>
-				<h:outputText value="#{client.professionnel}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="#{msg['clients.titre9']}" />
-				</f:facet>
-				<h:column>
-					<h:outputText value="#{client.adresse.rue}" />
-				</h:column>
-				<h:column>
-					<h:outputText value="#{client.adresse.codePostal}" />
-				</h:column>
-				<h:column>
-					<h:outputText value="#{client.adresse.ville}" />
-				</h:column>
-			</h:column>
-			<h:column>
-				<h:commandLink value="Supprimer" action="#{clientBean.delete}">
-					<f:setPropertyActionListener target="#{clientBean.clientId}"
-						value="#{client.idClient}" />
+				<h:commandLink value="#{msg['passager.edit']}" action="#{passagerBean.edit}">
+					<f:setPropertyActionListener target="#{passagerBean.passagerId}"
+						value="#{passager.idPas}" />
 				</h:commandLink>
 			</h:column>
 			<h:column>
-				<h:commandLink value="Editer" action="#{clientBean.edit}">
-					<f:setPropertyActionListener target="#{clientBean.clientId}"
-						value="#{client.idClient}" />
+				<h:commandLink value="#{msg['passager.delete']}" action="#{passagerBean.delete}">
+					<f:setPropertyActionListener target="#{passagerBean.passagerId}"
+						value="#{passager.idPas}" />
 				</h:commandLink>
 			</h:column>
+			
 		</h:dataTable>
-		<h:commandLink value="Ajouter" action="#{clientBean.add}" />
+		<h:commandLink value="#{msg['passager.add']}" action="#{passagerBean.add}" />
 	</h:form>
 </h:body>
 </html>
-
-
-

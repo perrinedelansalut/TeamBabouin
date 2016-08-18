@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import vol.model.Passager;
-import vol.model.Titre;
 import vol.model.dao.PassagerDao;
 
 @Component
@@ -40,10 +39,6 @@ public class PassagerBean {
 		this.PassagerId = PassagerId;
 	}
 
-	public Titre[] getTitres() {
-		return Titre.values();
-	}
-
 	public String add() {
 		this.Passager = new Passager();
 		return "PassagerEdit";
@@ -55,7 +50,7 @@ public class PassagerBean {
 		} else {
 			PassagerDao.create(Passager);
 		}
-		return "Passagers";
+		return "Passager";
 	}
 
 	public String edit() {
@@ -65,6 +60,6 @@ public class PassagerBean {
 
 	public String delete() {
 		PassagerDao.delete(PassagerDao.find(PassagerId));
-		return "Passagers";
+		return "Passager";
 	}
 }

@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view locale="#{changeLocale.locale}">
+<h:head>
+	<title>Edition Passager</title>
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+	<h:form id="formulaire">
+		<h1>
+			<h:outputText value="Passager" />
+		</h1>
+		<h:inputHidden id="id" value="#{passagerBean.passager.idpassager}" />
+		<h:inputHidden id="version" value="#{passagerBean.passager.version}" />
+		
+		<h:panelGrid columns="2" border="1">
+			
+			<h:outputText value="#{msg['passager.edit.nom']}" styleClass="info" />
+			<h:inputText id="nom" value="#{passagerBean.passager.nom}"/>
+			
+			<h:outputText value="#{msg['passager.edit.prenom']}" styleClass="info" />
+			<h:inputText id="prenom" value="#{passagerBean.passager.prenom}"/>
+			
+			<h:outputText value="#{msg['passager.edit.adresse.rue']}" styleClass="info" />
+			<h:inputText id="rue" value="#{passagerBean.passager.adresse.rue}"/>
+			
+			<h:outputText value="#{msg['passager.edit.adresse.codePostal']}" styleClass="info" />
+			<h:inputText id="codePostal" value="#{passagerBean.passager.adresse.codePostal}"/>
+			
+			<h:outputText value="#{msg['passager.edit.adresse.ville']}" styleClass="info" />
+			<h:inputText id="ville" value="#{passagerBean.passager.adresse.ville}"/>
+				
+		</h:panelGrid>
+		<p>
+			<h:commandButton type="submit" value="#{msg['passager.edit.save']}" action="#{passagerBean.save}"/>
+			<h:commandButton value="#{msg['passager.edit.return']}" action="passager" immediate="true"/>
+		</p>
+	</h:form>
+</h:body>
+</f:view>
+</html>
+
+				
