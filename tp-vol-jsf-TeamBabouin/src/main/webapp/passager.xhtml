@@ -4,15 +4,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	 xmlns:p="http://primefaces.org/ui">
+	 xmlns:p="http://primefaces.org/ui"
+	 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 	<title>Liste des passagers</title>
 	<h:outputStylesheet library="css" name="styles.css" />
 </h:head>
 <h:body>
-	<h2>
-		<h:outputText value="Liste des passager" />
-	</h2>
+<ui:include src="/menu.xhtml" />
 	<h:form id="formulaire">
 		<p:dataTable value="#{passagerBean.passagers}" var="passager">
 			<p:column>
@@ -59,20 +58,20 @@
 			</p:column>
 			
 			<p:column>
-				<h:commandLink value="#{msg['passager.edit']}" action="#{passagerBean.edit}">
+				<p:commandButton value="#{msg['passager.edit']}" action="#{passagerBean.edit}" ajax="false">
 					<f:setPropertyActionListener target="#{passagerBean.passagerId}"
 						value="#{passager.idPas}" />
-				</h:commandLink>
+				</p:commandButton>
 			</p:column>
 			<p:column>
-				<h:commandLink value="#{msg['passager.delete']}" action="#{passagerBean.delete}">
+				<p:commandButton value="#{msg['passager.delete']}" action="#{passagerBean.delete}" ajax="false">
 					<f:setPropertyActionListener target="#{passagerBean.passagerId}"
 						value="#{passager.idPas}" />
-				</h:commandLink>
+				</p:commandButton>
 			</p:column>
 			
 		</p:dataTable>
-		<h:commandLink value="#{msg['passager.add']}" action="#{passagerBean.add}" />
+		<h:commandLink value="#{msg['passager.add']}" action="#{passagerBean.add}"/>
 	</h:form>
 </h:body>
 </html>
