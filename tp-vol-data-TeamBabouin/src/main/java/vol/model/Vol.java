@@ -96,7 +96,7 @@ public class Vol {
 		return aeroportDepart;
 	}
 	
-	@OneToMany(mappedBy="id.vol")
+	@OneToMany(mappedBy="vol")
 	public List<CompagnieAerienneVol> getCompagnieAerienneVols() {
 		return compagnieAerienneVols;
 	}

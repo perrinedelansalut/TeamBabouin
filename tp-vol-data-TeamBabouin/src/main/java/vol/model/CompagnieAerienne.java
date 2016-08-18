@@ -18,7 +18,7 @@ public class CompagnieAerienne {
 	private Integer id;
 	private int version;
 	private String nom;
-	//private List<CompagnieAerienneVol> compagnieAerienneVol = new ArrayList<CompagnieAerienneVol>();
+	private List<CompagnieAerienneVol> compagnieAerienneVol = new ArrayList<CompagnieAerienneVol>();
 	
 	@Id
 	@GeneratedValue
@@ -49,14 +49,14 @@ public class CompagnieAerienne {
 		this.nom = nom;
 	}
 	
-//	@OneToMany(mappedBy="id.compagnieAerienne")
-//	public List<CompagnieAerienneVol> getCompagnieAerienneVol() {
-//		return compagnieAerienneVol;
-//	}
-//
-//	public void setCompagnieAerienneVol(List<CompagnieAerienneVol> compagnieAerienneVol) {
-//		this.compagnieAerienneVol = compagnieAerienneVol;
-//	}
+	@OneToMany(mappedBy="compagnieAerienne")
+	public List<CompagnieAerienneVol> getCompagnieAerienneVol() {
+		return compagnieAerienneVol;
+	}
+
+	public void setCompagnieAerienneVol(List<CompagnieAerienneVol> compagnieAerienneVol) {
+		this.compagnieAerienneVol = compagnieAerienneVol;
+	}
 
 	@Override
 	public String toString() {
