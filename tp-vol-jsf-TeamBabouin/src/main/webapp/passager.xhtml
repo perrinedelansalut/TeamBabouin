@@ -8,12 +8,12 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 	<title>Liste des passagers</title>
-	<h:outputStylesheet library="css" name="styles.css" />
 </h:head>
 <h:body>
 	<ui:include src="/menu.xhtml" />
 	<h:form id="formulaire">
-		<p:dataTable id="passagers" value="#{passagerBean.passagers}" var="passager">
+		<p:dataTable id="passagers" value="#{passagerBean.passagers}"
+			var="passager">
 			<p:column>
 				<f:facet name="header">
 					<h:outputText value="#{msg['passager.id']}" />
@@ -66,7 +66,7 @@
 			</p:column>
 
 
-			<!-- 			
+<!-- 		Bouton simple sans style		
 			<p:column>
 				<p:commandButton value="#{msg['passager.delete']}" action="#{passagerBean.delete}" ajax="false">
 					<f:setPropertyActionListener target="#{passagerBean.passagerId}"
@@ -74,24 +74,25 @@
 				</p:commandButton>
 			</p:column>
  -->
-
 			<p:column>
-				
+
 				<p:commandButton value="#{msg['passager.delete']}"
-					action="#{passagerBean.delete}" update="passagers" > 
+					action="#{passagerBean.delete}" update="passagers">
 					<f:setPropertyActionListener target="#{passagerBean.passagerId}"
 						value="#{passager.idPas}" />
-					<p:confirm header="Suppression d'un passager" message="Etes vous sur?"
+					<p:confirm header="Suppression d'un passager"
+						message="Un hitman sera envoyé, vous n'entendrez plus parler de lui"
 						icon="ui-icon-alert" />
 				</p:commandButton>
 
 				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-					<p:commandButton value="Oui" type="button" 
+					<p:commandButton value="Buttez le !" type="button"
 						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-					<p:commandButton value="Non" type="button" 
-						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					<p:commandButton value="Laissez le vivre... pour l'instant..."
+						type="button" styleClass="ui-confirmdialog-no"
+						icon="ui-icon-close" />
 				</p:confirmDialog>
-				
+
 			</p:column>
 
 
