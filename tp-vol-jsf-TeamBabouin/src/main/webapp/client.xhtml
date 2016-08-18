@@ -84,7 +84,7 @@
 
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="#{msg['client.codePostal']}" />
+					<h:outputText value="#{msg['client.adresse.codePostal']}" />
 				</f:facet>
 				<h:outputText value="#{client.adresse.codePostal}" />
 			</p:column>
@@ -141,7 +141,7 @@
 		</p:dataTable>
 
 		<p:commandButton value="#{msg['client.addEI']}" action="#{clientBean.addEI}" />
-		<p:commandButton value="#{msg['client.adPhysiqye']}" action="#{clientBean.addPhysique}" />
+		<p:commandButton value="#{msg['client.addPhysique']}" action="#{clientBean.addPhysique}" />
 		<p:commandButton value="#{msg['client.addMoral']}" action="#{clientBean.addMoral}" />
 
 	</h:form>
