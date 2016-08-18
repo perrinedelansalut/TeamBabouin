@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>"#{msg['reservation.titre']}"</title>
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+	<h2>
+		<h:outputText value="#{msg['reservation.titre']}" />
+	</h2>
+	<h:form id="formulaire">
+		<h:dataTable value="#{reservationBean.reservations}" var="reservation">
+        
+			<h:column>
+				<h:outputText value="#{msg['reservation.valeurdate']}" />
+                     <h:outputText value="#{reservation.datereservation}">
+					<f:convertDateTime pattern="dd/MM/yyyy"/>
+				</h:outputText>
+			</h:column>
+				
+			<h:column>
+				<h:outputText value="#{msg['reservation.valeurnumero']}" />  
+				<h:outputText value="#{reservation.numero}" />
+			</h:column>
+            
+			<h:column>
+                    <h:outputText value="#{msg['reservation.valeuretat']}" />
+                    <h:outputText value="#{reservation.etatreservation.label}" />
+			</h:column>
+			
+			<h:column>
+				<h:commandLink value="#{msg['reservation.editer']}" action="#{reservationBean.edit}">
+					<f:setPropertyActionListener target="#{reservationBean.reservationId}"
+						value="#{reservation.id}" />
+				</h:commandLink>
+			</h:column>
+			<h:column>
+				<h:commandLink value="#{msg['reservation.supprimer']}" action="#{reservationBean.delete}">
+					<f:setPropertyActionListener target="#{reservationBean.reservationId}"
+						value="#{reservation.id}" />
+				</h:commandLink>
+			</h:column>
+		</h:dataTable>
+		<h:commandLink value="#{msg['reservation.ajouter']}" action="#{reservationBean.add}"/>
+	</h:form>
+</h:body>
+</html>
+
+
+
+
+
+

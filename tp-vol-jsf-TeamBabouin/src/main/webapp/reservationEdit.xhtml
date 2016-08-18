@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view>
+	<h:head>
+		<title>"#{msg['reservationEdit.titre']}"</title>
+	</h:head>
+	<h:body>
+		<h:form id="formulaire">
+			<h:inputHidden value="#{reservationBean.reservation.id}"/>
+			<h:inputHidden value="#{reservationBean.reservation.version}"/>
+			<h:panelGrid columns="3" border="1">
+                
+                <h:outputText value="#{msg['reservationEdit.valeurdate']}" styleClass="info" />
+				<h:inputText id="dtResa" value="#{reservationBean.reservation.dtNaissance}" converterMessage="#{msg['reservationEdit.dateerreur']}">
+					<f:convertDateTime pattern="dd/MM/yyyy"/>
+				</h:inputText>
+				<h:message for="dtResa"/>
+                
+                <h:outputText value="#{msg['reservationEdit.valeurnumero']}" styleClass="info" />
+				<h:inputText id="numero" value="#{reservationBean.reservation.numero}" required="true" requiredMessage="#{msg['reservationEdit.numeroerreur1']}" validatorMessage="#{msg['reservationEdit.numeroerreur2']}">
+					<f:validateLength minimum="8"/>
+				</h:inputText>
+				<h:message for="numero"/>
+
+				<h:outputText value="#{msg['reservationEdit.valeuretat']}" styleClass="info" />
+				<h:selectOneListbox id="etattresa" value="#{reservationBean.reservation.civilite}" size="1" required="true" requiredMessage="#{msg['reservationEdit.etaterreur']}">
+					<f:selectItem itemLabel="#{msg['reservationEdit.selectionner']}"/>
+					<f:selectItems value="#{reservationBean.civilites}" var="civilite" itemValue="#{civilite}" itemLabel="#{civilite.label}"/>	
+				</h:selectOneListbox>
+				<h:message for="etattresa"/>
+
+				
+	
+				
+			</h:panelGrid>
+			<p>
+				<h:commandButton type="submit" id="submit" action="#{reservationBean.save}"
+					value="#{msg['reservationEdit.valider']}" />
+				<h:commandButton id="retour" action="reservation" immediate="true"
+					value="#{msg['reservationEdit.retour']}" />
+			</p>
+		</h:form>
+	</h:body>
+</f:view>
+</html>
+
