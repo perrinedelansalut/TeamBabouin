@@ -2,47 +2,52 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <f:view>
 	<h:head>
 		<title>"#{msg['reservationEdit.titre']}"</title>
 	</h:head>
 	<h:body>
+	<ui:include src="/menu.xhtml" />
 		<h:form id="formulaire">
-			<h:inputHidden value="#{reservationBean.reservation.id}"/>
+		<p:panel>
+		
+		<p:messages autoUpdate="true" />
+		
+		
+			<h:inputHidden value="#{reservationBean.reservation.idRes}"/>
 			<h:inputHidden value="#{reservationBean.reservation.version}"/>
-			<h:panelGrid columns="3" border="1">
+			<h:panelGrid columns="3" cellpadding="5">
                 
-                <h:outputText value="#{msg['reservationEdit.valeurdate']}" styleClass="info" />
-				<h:inputText id="dtResa" value="#{reservationBean.reservation.dtNaissance}" converterMessage="#{msg['reservationEdit.dateerreur']}">
+                <h:outputText value="#{msg['reservationEdit.valeurdate']}" style="font-weight:bold" />
+				<p:inputText id="dtResa" value="#{reservationBean.reservation.date}" converterMessage="#{msg['reservationEdit.dateerreur']}">
 					<f:convertDateTime pattern="dd/MM/yyyy"/>
-				</h:inputText>
-				<h:message for="dtResa"/>
+				</p:inputText>
+				<p:message for="dtResa"/>
                 
-                <h:outputText value="#{msg['reservationEdit.valeurnumero']}" styleClass="info" />
-				<h:inputText id="numero" value="#{reservationBean.reservation.numero}" required="true" requiredMessage="#{msg['reservationEdit.numeroerreur1']}" validatorMessage="#{msg['reservationEdit.numeroerreur2']}">
+                <h:outputText value="#{msg['reservationEdit.valeurnumero']}" style="font-weight:bold" />
+				<p:inputText id="numero" value="#{reservationBean.reservation.numero}" required="true" requiredMessage="#{msg['reservationEdit.numeroerreur1']}" validatorMessage="#{msg['reservationEdit.numeroerreur2']}">
 					<f:validateLength minimum="8"/>
-				</h:inputText>
-				<h:message for="numero"/>
+				</p:inputText>
+				<p:message for="numero"/>
 
-				<h:outputText value="#{msg['reservationEdit.valeuretat']}" styleClass="info" />
-				<h:selectOneListbox id="etattresa" value="#{reservationBean.reservation.civilite}" size="1" required="true" requiredMessage="#{msg['reservationEdit.etaterreur']}">
+				<h:outputText value="#{msg['reservationEdit.valeuretat']}" style="font-weight:bold" />
+				<p:selectOneListbox id="etattresa" value="#{reservationBean.reservation.etatReservation}" size="1" required="true" requiredMessage="#{msg['reservationEdit.etaterreur']}">
 					<f:selectItem itemLabel="#{msg['reservationEdit.selectionner']}"/>
-					<f:selectItems value="#{reservationBean.civilites}" var="civilite" itemValue="#{civilite}" itemLabel="#{civilite.label}"/>	
-				</h:selectOneListbox>
-				<h:message for="etattresa"/>
-
-				
-	
-				
-			</h:panelGrid>
+					<f:selectItems value="#{reservationBean.etatReservation}" var="etatReservation" itemValue="#{etatReservation}" itemLabel="#{etatReservation.label}"/>	
+				</p:selectOneListbox>
+				<p:message for="etattresa"/>
+		</h:panelGrid>
 			<p>
-				<h:commandButton type="submit" id="submit" action="#{reservationBean.save}"
-					value="#{msg['reservationEdit.valider']}" />
-				<h:commandButton id="retour" action="reservation" immediate="true"
-					value="#{msg['reservationEdit.retour']}" />
+				<p:commandButton type="submit" action="#{reservationBean.save}" ajax="false"
+					value="#{msg['reservationEdit.valider']}"></p:commandButton>  
+				<p:commandButton  action="reservation" immediate="true"  ajax="false"
+					value="#{msg['reservationEdit.retour']}" ></p:commandButton>
 			</p>
+			</p:panel>
 		</h:form>
 	</h:body>
 </f:view>

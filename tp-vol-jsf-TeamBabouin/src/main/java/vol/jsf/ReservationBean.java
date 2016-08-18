@@ -1,4 +1,4 @@
-
+package vol.jsf;
 
 import java.util.List;
 
@@ -6,41 +6,47 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import banque.dao.ClientDao;
-import banque.model.Civilite;
-import banque.model.Client;
+import vol.model.EtatReservation;
 import vol.model.Reservation;
-import vol.model.dao.ReservationDao;
+import vol.model.dao.ReservationDao;   
 
 @Component
 @Scope("request")
-public class ReservationBean {
-
+public class ReservationBean {   
+     
 	@Autowired
 	private ReservationDao reservationDao;
 
-	private Long reservationId = null;
+	private Integer reservationId = null;  
+
+	public Integer getReservationId() {
+		return reservationId;
+	}  
+
+	public ReservationDao getReservationDao() {
+		return reservationDao;
+	}
+ 
+	public void setReservationDao(ReservationDao reservationDao) {
+		this.reservationDao = reservationDao;
+	}
+
+	public Reservation getReservation() {
+		return reservation;
+	}
+
+	public void setReservation(Reservation reservation) {
+		this.reservation = reservation;
+	}
+
+	public void setReservationId(Integer reservationId) {
+		this.reservationId = reservationId;
+	}
 
 	private Reservation reservation = new Reservation();
 
-	public List<Reservation> getClients() {
-		return clientDao.findAll();
-	}
-
-	public Long getClientId() {
-		return clientId;
-	}
-
-	public void setClientId(Long clientId) {
-		this.clientId = clientId;
-	}
-
-	public Client getSelectedClient() {
-		return selectedClient;
-	}
-
-	public void setSelectedClient(Client selectedClient) {
-		this.selectedClient = selectedClient;
+	public List<Reservation> getReservations() {
+		return reservationDao.findAll();
 	}
 
 	public EtatReservation[] getEtatReservation() {
@@ -56,20 +62,21 @@ public class ReservationBean {
 
 		return "reservationEdit";
 	}
-
-	public String save() {
+    
+	public String save() { 
 		if (reservation.getIdRes() != null) {
 			reservationDao.update(reservation);
 		} else {
 			reservationDao.create(reservation);
-		}
-
+		}                
+       
 		return "reservation";
-	}
-
+	}     
+     
 	public String delete() {
 		reservationDao.delete(reservationDao.find(reservationId));
 
-		return "reservation";
-	}
+		return "reservation"; 
+	} 
 }
+
