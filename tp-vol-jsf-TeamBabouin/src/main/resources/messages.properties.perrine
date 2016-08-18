@@ -65,4 +65,6 @@ clientEdit.err2=Saisie obligatoire!
 
 reservationEdit.passager.nom=Passager
 reservation.passager.nom=Passager
+reservationEdit.client.nom=Client
+reservation.client.nom=Client
 
