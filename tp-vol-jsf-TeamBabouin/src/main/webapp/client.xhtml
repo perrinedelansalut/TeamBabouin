@@ -15,7 +15,7 @@
 		<ui:param name="i" value="3" />
 	</ui:include>
 	<h:form id="formulaire">
-		<p:dataTable value="#{clientBean.clients}" var="client">
+		<p:dataTable id="clients" value="#{clientBean.clients}" var="client">
 
 			<p:column>
 				<f:facet name="header">
@@ -136,12 +136,33 @@
 				</p:commandButton>
 			</p:column>
 
-			<p:column>
+<!-- 			<p:column>
 				<p:commandButton value="#{msg['client.delete']}"
 					action="#{clientBean.delete}" ajax="false">
 					<f:setPropertyActionListener target="#{clientBean.clientId}"
 						value="#{client.idCli}" />
 				</p:commandButton>
+			</p:column> -->
+
+			<p:column>
+
+				<p:commandButton value="#{msg['client.delete']}"
+					action="#{clientBean.delete}" update="clients">
+					<f:setPropertyActionListener target="#{clientBean.clientId}"
+						value="#{client.idCli}" />
+					<p:confirm header="Suppression d'un client"
+						message="Un hitman sera envoyé, vous n'entendrez plus parler de lui"
+						icon="ui-icon-alert" />
+				</p:commandButton>
+
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="Buttez le !" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Laissez le vivre... pour l'instant..."
+						type="button" styleClass="ui-confirmdialog-no"
+						icon="ui-icon-close" />
+				</p:confirmDialog>
+
 			</p:column>
 
 		</p:dataTable>

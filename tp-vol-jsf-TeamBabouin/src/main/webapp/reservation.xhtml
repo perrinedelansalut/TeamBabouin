@@ -6,62 +6,95 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-	
+
 
 <h:head>
 	<title>#{msg['reservation.titre']}</title>
 </h:head>
 <h:body>
 
-	<ui:include src="/menu.xhtml" />
-	
+	<ui:include src="/menu.xhtml">
+		<ui:param name="i" value="8" />
+	</ui:include>
+
 	<h:form id="formulaire">
-		<p:dataTable value="#{reservationBean.reservations}" var="reservation">
-        
+		<p:dataTable id="reservations" value="#{reservationBean.reservations}" var="reservation">
+
 			<p:column headerText="#{msg['reservation.valeurdate']}">
-				
-                     <h:outputText value="#{reservation.date}">
-					<f:convertDateTime pattern="dd/MM/yyyy"/>
+
+				<h:outputText value="#{reservation.date}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
 			</p:column>
-				
+
 			<p:column headerText="#{msg['reservation.valeurnumero']}">
-				
+
 				<h:outputText value="#{reservation.numero}" />
 			</p:column>
-            
+
 			<p:column headerText="#{msg['reservation.valeuretat']}">
-                   
-                    <h:outputText value="#{reservation.etatReservation.label}" />
+
+				<h:outputText value="#{reservation.etatReservation.label}" />
 			</p:column>
-			
+
 			<p:column headerText="#{msg['reservation.passager.nom']}">
-            <h:outputText value="#{reservation.passager.nom}" />
+				<h:outputText value="#{reservation.passager.nom}" />
 			</p:column>
-			
+
 			<p:column headerText="#{msg['reservation.client.nom']}">
-            <h:outputText value="#{reservation.client.nom}" />
+				<h:outputText value="#{reservation.client.nom}" />
 			</p:column>
-			
+
 			<p:column headerText="Vol">
-            <h:outputText value="#{reservation.vol.dateDepart}" />
+				<h:outputText value="#{reservation.vol.dateDepart}" />
 			</p:column>
-			
+
 			<p:column headerText="#{msg['reservation.editer']}">
-				 <p:commandButton value="#{msg['reservation.editer']}" action="#{reservationBean.edit}" id="nonAjax" ajax="false">
-					<f:setPropertyActionListener target="#{reservationBean.reservationId}"
-						value="#{reservation.idRes}" />
-				 </p:commandButton>
-			</p:column>
-			<p:column headerText="#{msg['reservation.supprimer']}">
-				<p:commandButton value="#{msg['reservation.supprimer']}" action="#{reservationBean.delete}" id="nonAjax3" ajax="false">
-					<f:setPropertyActionListener target="#{reservationBean.reservationId}"
+				<p:commandButton value="#{msg['reservation.editer']}"
+					action="#{reservationBean.edit}" id="nonAjax" ajax="false">
+					<f:setPropertyActionListener
+						target="#{reservationBean.reservationId}"
 						value="#{reservation.idRes}" />
 				</p:commandButton>
 			</p:column>
+
+<!-- 
+			<p:column headerText="#{msg['reservation.supprimer']}">
+				<p:commandButton value="#{msg['reservation.supprimer']}"
+					action="#{reservationBean.delete}" id="nonAjax3" ajax="false">
+					<f:setPropertyActionListener
+						target="#{reservationBean.reservationId}"
+						value="#{reservation.idRes}" />
+				</p:commandButton>
+			</p:column>
+ -->
+			<p:column>
+
+				<p:commandButton value="#{msg['reservation.supprimer']}"
+					action="#{reservationBean.delete}" update="reservations">
+					<f:setPropertyActionListener target="#{reservationBean.reservationId}"
+						value="#{reservation.idRes}" />
+					<p:confirm header="Suppression réservation"
+						message="Vous êtes sur de vouloir supprimer cette réservation ?"
+						icon="ui-icon-alert" />
+				</p:commandButton>
+
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="Oui" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Non"
+						type="button" styleClass="ui-confirmdialog-no"
+						icon="ui-icon-close" />
+				</p:confirmDialog>
+
+			</p:column>
+
+
+
 		</p:dataTable>
-		    <p:commandButton value="#{msg['reservation.ajouter']}" id="nonAjax2" action="#{reservationBean.add}" ajax="false" />
-<!-- 		<h:commandLink value="#{msg['reservation.ajouter']}" action="#{reservationBean.add}"/> -->
+		<p:commandButton value="#{msg['reservation.ajouter']}" id="nonAjax2"
+			action="#{reservationBean.add}" ajax="false" />
+		<!-- 		<h:commandLink value="#{msg['reservation.ajouter']}" action="#{reservationBean.add}"/> -->
 	</h:form>
 </h:body>
 </html>
