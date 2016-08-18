@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Liste des clients</title>
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body
+	style="background-image: url('${request.contextPath}/resources/images/standard.jpg');">
+	<h2>
+		<h:outputText value="Liste des clients" />
+	</h2>
+	<h:form id="formulaire">
+		<h:dataTable value="#{clientBean.clients}" var="client">
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Id" />
+				</f:facet>
+				<h:outputText value="#{client.idCli}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Titre" />
+				</f:facet>
+				<h:outputText value="#{client.titre.label}" />
+			</h:column>
+
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Nom" />
+				</f:facet>
+				<h:outputText value="#{client.nom}" />
+			</h:column>
+
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Prénom" />
+				</f:facet>
+				<h:outputText value="#{client.prenom}" rendered="#{client.typeClient == 'EI' || client.typeClient == 'Physique' }" />
+			</h:column>
+
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Siret" />
+				</f:facet>
+				<h:outputText value="#{client.siret}" rendered="#{client.typeClient == 'Moral'}"/>
+			</h:column>
+
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Téléphone" />
+				</f:facet>
+				<h:outputText value="#{client.numeroTel}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Fax" />
+				</f:facet>
+				<h:outputText value="#{client.numeroFax}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Email" />
+				</f:facet>
+				<h:outputText value="#{client.email}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Rue" />
+				</f:facet>
+				<h:outputText value="#{client.adresse.adresse}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Code postal" />
+				</f:facet>
+				<h:outputText value="#{client.adresse.codePostal}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Ville" />
+				</f:facet>
+				<h:outputText value="#{client.adresse.ville}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Pays" />
+				</f:facet>
+				<h:outputText value="#{client.adresse.pays}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="login" />
+				</f:facet>
+				<h:outputText value="#{client.log.login}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Mot de passe" />
+				</f:facet>
+				<h:outputText value="#{client.log.motDePasse}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Admin" />
+				</f:facet>
+				<h:outputText value="#{client.log.admin}" />
+			</h:column>
+
+<!-- 			<h:column> -->
+<!-- 				<h:commandLink value="Editer" action="#{clientBean.edit}"> -->
+<!-- 					<f:setPropertyActionListener target="#{clientBean.clientId}" -->
+<!-- 						value="#{client.id}" /> -->
+<!-- 				</h:commandLink> -->
+<!-- 			</h:column> -->
+
+			<h:column>
+				<h:commandLink value="Supprimer" action="#{clientBean.delete}">
+					<f:setPropertyActionListener target="#{clientBean.clientId}"
+						value="#{client.id}" />
+				</h:commandLink>
+			</h:column>
+
+		</h:dataTable>
+
+<!-- 		<h:commandLink value="Ajouter" action="#{clientBean.add}" /> -->
+
+	</h:form>
+</h:body>
+</html>
+
+
+
