@@ -40,7 +40,7 @@ public class CompagnieAerienne {
 	}
 
 	@Column(length = 100)
-	@Size(min=4, max=100, message="{compagnieAerienne.nom.error.size}")
+	//@Size(min=4, max=100, message="{compagnieAerienne.nom.error.size}")
 	public String getNom() {
 		return nom;
 	}

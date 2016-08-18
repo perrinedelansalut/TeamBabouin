@@ -5,13 +5,13 @@ import javax.persistence.Entity;
 
 @Entity @DiscriminatorValue("Moral")
 public class ClientMoral extends Client{
-	private int siret;
+	private Integer siret;
 
-	public int getSiret() {
+	public Integer getSiret() {
 		return siret;
 	}
 
-	public void setSiret(int siret) {
+	public void setSiret(Integer siret) {
 		this.siret = siret;
 	}
 	
