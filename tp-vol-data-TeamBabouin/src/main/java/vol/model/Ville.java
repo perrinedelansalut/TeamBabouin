@@ -17,7 +17,7 @@ public class Ville {
 	private Integer idVil;
 	private String nom;
 	private List<AeroportVille> AeroportVille = new ArrayList<AeroportVille>();
-	//private int version;
+//	private int version;
 	public Ville(){
 		
 	}

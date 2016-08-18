@@ -11,7 +11,7 @@ import vol.model.dao.VilleDao;
 
 
 
-@Component
+@Component    
 @Scope("request")
 public class VilleBean {
 	
@@ -40,6 +40,42 @@ public class VilleBean {
 		return "ville";
 	}
 
+	public VilleDao getVilleDao() {
+		return villeDao;
+	}
+  
+
+
+	public void setVilleDao(VilleDao villeDao) {
+		this.villeDao = villeDao;
+	}
+
+
+
+	public Integer getVilleId() {
+		return villeId;
+	}
+
+
+
+	public void setVilleId(Integer villeId) {
+		this.villeId = villeId;
+	}
+
+
+
+	public Ville getVille() {
+		return ville;
+	}
+
+
+
+	public void setVille(Ville ville) {
+		this.ville = ville;
+	}
+
+
+ 
 	public String edit() {
 		this.ville = villeDao.find(villeId);
 		return "villeEdit";
@@ -47,7 +83,7 @@ public class VilleBean {
 
 	public String delete() {
 		villeDao.delete(villeDao.find(villeId));
-		return "ville";
+		return "ville"; 
 	}
 
 }
