@@ -63,3 +63,6 @@ clientEdit.return=Retour
 clientEdit.err1=Saisie invalide !
 clientEdit.err2=Saisie obligatoire!
 
+reservationEdit.passager.nom=Passager
+reservation.passager.nom=Passager
+

@@ -7,7 +7,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import vol.model.EtatReservation;
+import vol.model.Passager;
 import vol.model.Reservation;
+import vol.model.dao.PassagerDao;
 import vol.model.dao.ReservationDao;   
 
 @Component
@@ -16,8 +18,12 @@ public class ReservationBean {
      
 	@Autowired
 	private ReservationDao reservationDao;
+	private PassagerDao passagerDao;
+	
+	private Reservation reservation = new Reservation();
 
 	private Integer reservationId = null;  
+	private Integer passagerId=null;
 
 	public Integer getReservationId() {
 		return reservationId;
@@ -42,8 +48,14 @@ public class ReservationBean {
 	public void setReservationId(Integer reservationId) {
 		this.reservationId = reservationId;
 	}
+	
+	public Integer getPassagerId() {
+		return passagerId;
+	}
 
-	private Reservation reservation = new Reservation();
+	public void setPassagerId(Integer passagerId) {
+		this.passagerId = passagerId;
+	}
 
 	public List<Reservation> getReservations() {
 		return reservationDao.findAll();
@@ -52,14 +64,20 @@ public class ReservationBean {
 	public EtatReservation[] getEtatReservation() {
 		return EtatReservation.values();
 	}
-
+	
+	public List<Passager>getPassagers(){
+		return passagerDao.findAll();
+	}
+	
 	public String add() {
 		return "reservationEdit";
 	}
 
 	public String edit() {
 		this.reservation = reservationDao.find(reservationId);
-
+		if(this.reservation.getPassager()==null) {
+			this.reservation.setPassager(new Passager());
+		}
 		return "reservationEdit";
 	}
     
