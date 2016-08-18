@@ -11,7 +11,9 @@
 	<h:outputStylesheet library="css" name="styles.css" />
 </h:head>
 <h:body>
-<ui:include src="/menu.xhtml" />
+	<ui:include src="/menu.xhtml">
+		<ui:param name="i" value="3" />
+	</ui:include>
 	<h:form id="formulaire">
 		<p:dataTable value="#{clientBean.clients}" var="client">
 
@@ -42,7 +44,8 @@
 				<f:facet name="header">
 					<h:outputText value="#{msg['client.prenom']}" />
 				</f:facet>
-				<h:outputText value="#{client.prenom}" rendered="#{client.typeClient == 'EI' || client.typeClient == 'Physique' }" />
+				<h:outputText value="#{client.prenom}"
+					rendered="#{client.typeClient == 'EI' || client.typeClient == 'Physique' }" />
 			</p:column>
 
 
@@ -50,17 +53,18 @@
 				<f:facet name="header">
 					<h:outputText value="#{msg['client.siret']}" />
 				</f:facet>
-				<h:outputText value="#{client.siret}" rendered="#{client.typeClient == 'Moral'}"/>
+				<h:outputText value="#{client.siret}"
+					rendered="#{client.typeClient == 'Moral'}" />
 			</p:column>
 
-			
+
 			<p:column>
 				<f:facet name="header">
 					<h:outputText value="#{msg['client.telephone']}" />
 				</f:facet>
 				<h:outputText value="#{client.numeroTel}" />
 			</p:column>
-			
+
 			<p:column>
 				<f:facet name="header">
 					<h:outputText value="#{msg['client.fax']}" />
@@ -95,14 +99,14 @@
 				</f:facet>
 				<h:outputText value="#{client.adresse.ville}" />
 			</p:column>
-			
+
 			<p:column>
 				<f:facet name="header">
 					<h:outputText value="#{msg['client.adresse.pays']}" />
 				</f:facet>
 				<h:outputText value="#{client.adresse.pays}" />
 			</p:column>
-			
+
 			<p:column>
 				<f:facet name="header">
 					<h:outputText value="#{msg['client.log.login']}" />
@@ -125,14 +129,16 @@
 			</p:column>
 
 			<p:column>
-				<p:commandButton value="#{msg['client.edit']}" action="#{clientBean.edit}" ajax="false">
+				<p:commandButton value="#{msg['client.edit']}"
+					action="#{clientBean.edit}" ajax="false">
 					<f:setPropertyActionListener target="#{clientBean.clientId}"
 						value="#{client.idCli}" />
 				</p:commandButton>
 			</p:column>
 
 			<p:column>
-				<p:commandButton value="#{msg['client.delete']}" action="#{clientBean.delete}" ajax="false">
+				<p:commandButton value="#{msg['client.delete']}"
+					action="#{clientBean.delete}" ajax="false">
 					<f:setPropertyActionListener target="#{clientBean.clientId}"
 						value="#{client.idCli}" />
 				</p:commandButton>
@@ -140,9 +146,12 @@
 
 		</p:dataTable>
 
-		<p:commandButton value="#{msg['client.addEI']}" action="#{clientBean.addEI}" ajax="false"/>
-		<p:commandButton value="#{msg['client.addPhysique']}" action="#{clientBean.addPhysique}" ajax="false"/>
-		<p:commandButton value="#{msg['client.addMoral']}" action="#{clientBean.addMoral}" ajax="false"/>
+		<p:commandButton value="#{msg['client.addEI']}"
+			action="#{clientBean.addEI}" ajax="false" />
+		<p:commandButton value="#{msg['client.addPhysique']}"
+			action="#{clientBean.addPhysique}" ajax="false" />
+		<p:commandButton value="#{msg['client.addMoral']}"
+			action="#{clientBean.addMoral}" ajax="false" />
 
 	</h:form>
 </h:body>

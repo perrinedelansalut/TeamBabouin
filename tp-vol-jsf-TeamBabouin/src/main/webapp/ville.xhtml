@@ -4,14 +4,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	 xmlns:p="http://primefaces.org/ui"
-	 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 	<title>#{msg['ville.titre']}</title>
-	
+
 </h:head>
 <h:body>
-<ui:include src="/menu.xhtml" />
+	<ui:include src="/menu.xhtml">
+		<ui:param name="i" value="9" />
+	</ui:include>
+
 	<h:form id="formulaire">
 		<p:dataTable value="#{villeBean.villes}" var="ville">
 			<p:column>
@@ -26,28 +29,30 @@
 				</f:facet>
 				<h:outputText value="#{ville.nom}" />
 			</p:column>
-			
+
 			<p:column>
-			<f:facet name="header">
+				<f:facet name="header">
 					<h:outputText value="#{msg['ville.edit']}" />
 				</f:facet>
-				<p:commandButton value="#{msg['ville.edit']}" action="#{villeBean.edit}" ajax="false">
+				<p:commandButton value="#{msg['ville.edit']}"
+					action="#{villeBean.edit}" ajax="false">
 					<f:setPropertyActionListener target="#{villeBean.villeId}"
 						value="#{ville.idVil}" />
 				</p:commandButton>
 			</p:column>
 			<p:column>
-			<f:facet name="header">
+				<f:facet name="header">
 					<h:outputText value="#{msg['ville.delete']}" />
 				</f:facet>
-				<p:commandButton value="#{msg['ville.delete']}" action="#{villeBean.delete}" ajax="false">
+				<p:commandButton value="#{msg['ville.delete']}"
+					action="#{villeBean.delete}" ajax="false">
 					<f:setPropertyActionListener target="#{villeBean.villeId}"
 						value="#{ville.idVil}" />
 				</p:commandButton>
 			</p:column>
-			
+
 		</p:dataTable>
-		<p:commandButton value="#{msg['ville.add']}" action="#{villeBean.add}"/>
+		<p:commandButton value="#{msg['ville.add']}" action="#{villeBean.add}" />
 	</h:form>
 </h:body>
 </html>

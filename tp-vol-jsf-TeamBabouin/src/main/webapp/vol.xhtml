@@ -6,63 +6,67 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-	
+
 
 <h:head>
 	<title>"#{msg['vol.titre']}"</title>
 </h:head>
 <h:body>
+	<ui:include src="/menu.xhtml">
+		<ui:param name="i" value="10" />
+	</ui:include>
 
-	<ui:include src="/menu.xhtml" />
-	
 	<h:form id="formulaire">
 		<p:dataTable value="#{volBean.vols}" var="vol">
-        
+
 			<p:column headerText="#{msg['vol.valeurdatedepart']}">
-				
-                     <h:outputText value="#{vol.dateDepart}">
-					<f:convertDateTime pattern="dd/MM/yyyy"/>
+
+				<h:outputText value="#{vol.dateDepart}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
 			</p:column>
-			
+
 			<p:column headerText="#{msg['vol.valeurdatearrivee']}">
-				
-                     <h:outputText value="#{vol.dateArrivee}">
-					<f:convertDateTime pattern="dd/MM/yyyy"/>
+
+				<h:outputText value="#{vol.dateArrivee}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
 			</p:column>
-			
+
 			<p:column headerText="#{msg['vol.valeurheuredepart']}">
-				
-                     <h:outputText value="#{vol.heureDepart}">
-					<f:convertDateTime pattern="HH:mm"/>
+
+				<h:outputText value="#{vol.heureDepart}">
+					<f:convertDateTime pattern="HH:mm" />
 				</h:outputText>
 			</p:column>
-			
+
 			<p:column headerText="#{msg['vol.valeurheurearrivee']}">
-				
-                     <h:outputText value="#{vol.heureArrivee}">
-					<f:convertDateTime pattern="HH:mm"/>
+
+				<h:outputText value="#{vol.heureArrivee}">
+					<f:convertDateTime pattern="HH:mm" />
 				</h:outputText>
 			</p:column>
-				
-			
-			
+
+
+
 			<p:column headerText="#{msg['vol.editer']}">
-				 <p:commandButton value="#{msg['vol.editer']}" action="#{volBean.edit}" id="nonAjax" ajax="false">
+				<p:commandButton value="#{msg['vol.editer']}"
+					action="#{volBean.edit}" id="nonAjax" ajax="false">
 					<f:setPropertyActionListener target="#{volBean.volId}"
 						value="#{vol.idVol}" />
-				 </p:commandButton>
+				</p:commandButton>
 			</p:column>
 			<p:column headerText="#{msg['vol.supprimer']}">
-				<p:commandButton value="#{msg['vol.supprimer']}" action="#{volBean.delete}" id="nonAjax3" ajax="false">
+				<p:commandButton value="#{msg['vol.supprimer']}"
+					action="#{volBean.delete}" id="nonAjax3" ajax="false">
 					<f:setPropertyActionListener target="#{volBean.volId}"
 						value="#{vol.idVol}" />
 				</p:commandButton>
 			</p:column>
 		</p:dataTable>
-		    <p:commandButton value="#{msg['vol.ajouter']}" id="nonAjax2" action="#{volBean.add}" ajax="false" />
-<!-- 		<h:commandLink value="#{msg['reservation.ajouter']}" action="#{reservationBean.add}"/> -->
+		<p:commandButton value="#{msg['vol.ajouter']}" id="nonAjax2"
+			action="#{volBean.add}" ajax="false" />
+		<!-- 		<h:commandLink value="#{msg['reservation.ajouter']}" action="#{reservationBean.add}"/> -->
 	</h:form>
 </h:body>
 </html>

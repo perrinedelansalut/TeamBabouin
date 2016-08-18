@@ -10,7 +10,9 @@
 	<title>Liste des passagers</title>
 </h:head>
 <h:body>
-	<ui:include src="/menu.xhtml" />
+	<ui:include src="/menu.xhtml">
+		<ui:param name="i" value="7" />
+	</ui:include>
 	<h:form id="formulaire">
 		<p:dataTable id="passagers" value="#{passagerBean.passagers}"
 			var="passager">
@@ -66,7 +68,7 @@
 			</p:column>
 
 
-<!-- 		Bouton simple sans style		
+			<!-- 		Bouton simple sans style		
 			<p:column>
 				<p:commandButton value="#{msg['passager.delete']}" action="#{passagerBean.delete}" ajax="false">
 					<f:setPropertyActionListener target="#{passagerBean.passagerId}"
