@@ -9,14 +9,15 @@
 <f:view locale="#{changeLocale.locale}">
 	<h:head>
 		<title>Edition Passager</title>
-		
-	<!-- 	<h:outputStylesheet library="css" name="styles.css" /> -->
+
+		<!-- 	<h:outputStylesheet library="css" name="styles.css" /> -->
 	</h:head>
 	<h:body>
-		<ui:include src="/menu.xhtml" />
+		<ui:include src="/menu.xhtml">
+			<ui:param name="i" value="7" />
+		</ui:include>
 
-
-		<h:form id="formulaire">	
+		<h:form id="formulaire">
 			<p:panel>
 
 				<p:messages autoUpdate="true" />
@@ -96,9 +97,9 @@
 				</p>
 
 			</p:panel>
-			
-			
-			
+
+
+
 		</h:form>
 	</h:body>
 </f:view>
