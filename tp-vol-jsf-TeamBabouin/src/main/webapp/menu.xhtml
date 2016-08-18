@@ -10,9 +10,8 @@
 	<h:outputStylesheet library="css" name="styles.css" />
 </h:head>
 <h:body>
-	<h2>
-		<h:outputText value="#{msg['menu.titre']}" />
-	</h2>
+	<h:graphicImage value="/images/menutitre.jpg" />
+	
 	<p:tabMenu activeIndex="#{param.i}">
 		<p:menuitem value="#{msg['menu.index']}" outcome="index"
 			icon="ui-icon-star">
