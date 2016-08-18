@@ -2,46 +2,95 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <f:view locale="#{changeLocale.locale}">
-<h:head>
-	<title>Edition Passager</title>
-	<h:outputStylesheet library="css" name="styles.css" />
-</h:head>
-<h:body>
-	<h:form id="formulaire">
-		<h1>
-			<h:outputText value="Passager" />
-		</h1>
-		<h:inputHidden id="id" value="#{passagerBean.passager.idpassager}" />
-		<h:inputHidden id="version" value="#{passagerBean.passager.version}" />
-		
-		<h:panelGrid columns="2" border="1">
-			
-			<h:outputText value="#{msg['passager.edit.nom']}" styleClass="info" />
-			<h:inputText id="nom" value="#{passagerBean.passager.nom}"/>
-			
-			<h:outputText value="#{msg['passager.edit.prenom']}" styleClass="info" />
-			<h:inputText id="prenom" value="#{passagerBean.passager.prenom}"/>
-			
-			<h:outputText value="#{msg['passager.edit.adresse.rue']}" styleClass="info" />
-			<h:inputText id="rue" value="#{passagerBean.passager.adresse.rue}"/>
-			
-			<h:outputText value="#{msg['passager.edit.adresse.codePostal']}" styleClass="info" />
-			<h:inputText id="codePostal" value="#{passagerBean.passager.adresse.codePostal}"/>
-			
-			<h:outputText value="#{msg['passager.edit.adresse.ville']}" styleClass="info" />
-			<h:inputText id="ville" value="#{passagerBean.passager.adresse.ville}"/>
+	<h:head>
+		<title>Edition Passager</title>
+		<h:outputStylesheet library="css" name="styles.css" />
+	</h:head>
+	<h:body>
+		<h:form id="formulaire">
+			<p:panel header="Validate">
+				<p:messages autoUpdate="true" />
 				
-		</h:panelGrid>
-		<p>
-			<h:commandButton type="submit" value="#{msg['passager.edit.save']}" action="#{passagerBean.save}"/>
-			<h:commandButton value="#{msg['passager.edit.return']}" action="passager" immediate="true"/>
-		</p>
-	</h:form>
-</h:body>
+				<h1>
+					<h:outputText value="Passager" />
+				</h1>
+				<h:inputHidden id="id" value="#{passagerBean.passager.idPas}" />
+				<h:inputHidden id="version" value="#{passagerBean.passager.version}" />
+
+				<h:panelGrid columns="3" border="1">
+
+					<h:outputLabel for="name" value="#{msg['passagerEdit.nom']}" style="font-weight:bold" />
+					<p:inputText id="nom" value="#{passagerBean.passager.nom}"
+						required="true" requiredMessage="#{msg['passagerEdit.err2']}"
+						validatorMessage="#{msg['passagerEdit.err1']}">
+						<f:validateLength minimum="3" />
+					</p:inputText>
+					<h:message for="nom" styleClass="error" />
+
+					<h:outputText value="#{msg['passagerEdit.prenom']}"
+						styleClass="info" />
+					<h:inputText id="prenom" value="#{passagerBean.passager.prenom}"
+						required="true" requiredMessage="#{msg['passagerEdit.err2']}"
+						validatorMessage="#{msg['passagerEdit.err1']}>
+				<f:validateLength minimum=" 3"/>
+					</h:inputText>
+					<h:message for="prenom" styleClass="error" />
+
+					<h:outputText value="#{msg['passagerEdit.adresse.rue']}"
+						styleClass="info" />
+					<h:inputText id="rue"
+						value="#{passagerBean.passager.adresse.adresse}" required="true"
+						requiredMessage="#{msg['passagerEdit.err2']}"
+						validatorMessage="#{msg['passagerEdit.err1']}>
+				<f:validateLength minimum=" 3"/>
+					</h:inputText>
+					<h:message for="rue" styleClass="error" />
+
+					<h:outputText value="#{msg['passagerEdit.adresse.codePostal']}"
+						styleClass="info" />
+					<h:inputText id="codePostal"
+						value="#{passagerBean.passager.adresse.codePostal}"
+						required="true" requiredMessage="#{msg['passagerEdit.err2']}"
+						validatorMessage="#{msg['passagerEdit.err1']}>
+				<f:validateLength minimum="
+						5" maximun="5" />
+					</h:inputText>
+					<h:message for="codePostal" styleClass="error" />
+
+					<h:outputText value="#{msg['passagerEdit.adresse.ville']}"
+						styleClass="info" />
+					<h:inputText id="ville"
+						value="#{passagerBean.passager.adresse.ville}" required="true"
+						requiredMessage="#{msg['passagerEdit.err2']}"
+						validatorMessage="#{msg['passagerEdit.err1']}>
+				<f:validateLength minimum=" 3"/>
+					</h:inputText>
+					<h:message for="ville" styleClass="error" />
+
+					<h:outputText value="#{msg['passagerEdit.adresse.pays']}"
+						styleClass="info" />
+					<h:inputText id="pays"
+						value="#{passagerBean.passager.adresse.pays}" required="true"
+						requiredMessage="#{msg['passagerEdit.err2']}"
+						validatorMessage="#{msg['passagerEdit.err1']}>
+				<f:validateLength minimum=" 3"/>
+					</h:inputText>
+					<h:message for="pays" styleClass="error" />
+
+				</h:panelGrid>
+				<p>
+					<h:commandButton type="submit" value="#{msg['passagerEdit.save']}"
+						action="#{passagerBean.save}" />
+					<h:commandButton value="#{msg['passagerEdit.return']}"
+						action="passager" immediate="true" />
+				</p>
+			</p:panel>
+		</h:form>
+	</h:body>
 </f:view>
 </html>
 
-				

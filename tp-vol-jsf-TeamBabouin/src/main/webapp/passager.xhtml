@@ -3,7 +3,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Liste des passagers</title>
 	<h:outputStylesheet library="css" name="styles.css" />
@@ -13,58 +14,64 @@
 		<h:outputText value="Liste des passager" />
 	</h2>
 	<h:form id="formulaire">
-		<h:dataTable value="#{passagerBean.passagers}" var="passager">
-			<h:column>
+		<p:dataTable value="#{passagerBean.passagers}" var="passager">
+			<p:column>
 				<f:facet name="header">
 					<h:outputText value="#{msg['passager.id']}" />
 				</f:facet>
 				<h:outputText value="#{passager.idPas}" />
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">
 					<h:outputText value="#{msg['passager.nom']}" />
 				</f:facet>
 				<h:outputText value="#{passager.nom}" />
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">
 					<h:outputText value="#{msg['passager.prenom']}" />
 				</f:facet>
 				<h:outputText value="#{passager.prenom}" />
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">
 					<h:outputText value="#{msg['passager.adresse.rue']}" />
 				</f:facet>
-				<h:outputText value="#{passager.adresse.rue}" />
-			</h:column>
-			<h:column>
+				<h:outputText value="#{passager.adresse.adresse}" />
+			</p:column>
+			<p:column>
 				<f:facet name="header">
 					<h:outputText value="#{msg['passager.adresse.codePostal']}" />
 				</f:facet>
 				<h:outputText value="#{passager.adresse.codePostal}"/>
-			</h:column>
-			
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">
 					<h:outputText value="#{msg['passager.adresse.ville']}" />
 				</f:facet>
 				<h:outputText value="#{passager.adresse.ville}" />
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{msg['passager.adresse.pays']}" />
+				</f:facet>
+				<h:outputText value="#{passager.adresse.pays}" />
+			</p:column>
+			
+			<p:column>
 				<h:commandLink value="#{msg['passager.edit']}" action="#{passagerBean.edit}">
 					<f:setPropertyActionListener target="#{passagerBean.passagerId}"
 						value="#{passager.idPas}" />
 				</h:commandLink>
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<h:commandLink value="#{msg['passager.delete']}" action="#{passagerBean.delete}">
 					<f:setPropertyActionListener target="#{passagerBean.passagerId}"
 						value="#{passager.idPas}" />
 				</h:commandLink>
-			</h:column>
+			</p:column>
 			
-		</h:dataTable>
+		</p:dataTable>
 		<h:commandLink value="#{msg['passager.add']}" action="#{passagerBean.add}" />
 	</h:form>
 </h:body>

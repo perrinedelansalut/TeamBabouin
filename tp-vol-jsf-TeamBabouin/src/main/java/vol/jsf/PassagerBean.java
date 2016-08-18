@@ -14,52 +14,59 @@ import vol.model.dao.PassagerDao;
 public class PassagerBean {
 
 	@Autowired
-	private PassagerDao PassagerDao;
+	private PassagerDao passagerDao;
 	private Integer PassagerId = null;
-	private Passager Passager = new Passager();
-	
+	private Passager passager = new Passager();
 	
 	public List<Passager> getPassagers() {
-		return PassagerDao.findAll();
+		return passagerDao.findAll();
 	}
-
+	
 	public PassagerDao getPassagerDao() {
-		return PassagerDao;
+		return passagerDao;
 	}
 
-	public void setPassagerDao(PassagerDao PassagerDao) {
-		this.PassagerDao = PassagerDao;
+	public void setPassagerDao(PassagerDao passagerDao) {
+		this.passagerDao = passagerDao;
 	}
 
 	public Integer getPassagerId() {
 		return PassagerId;
 	}
 
-	public void setPassagerId(Integer PassagerId) {
-		this.PassagerId = PassagerId;
+	public void setPassagerId(Integer passagerId) {
+		PassagerId = passagerId;
+	}
+
+	public Passager getPassager() {
+		return passager;
+	}
+
+	public void setPassager(Passager passager) {
+		this.passager = passager;
 	}
 
 	public String add() {
-		this.Passager = new Passager();
-		return "PassagerEdit";
+		this.passager = new Passager();
+		return "passagerEdit";
 	}
 
 	public String save() {
-		if (Passager.getIdPas() != null) {
-			PassagerDao.update(Passager);
+		if (passager.getIdPas() != null) {
+			passagerDao.update(passager);
 		} else {
-			PassagerDao.create(Passager);
+			passagerDao.create(passager);
 		}
-		return "Passager";
+		return "passager";
 	}
 
 	public String edit() {
-		this.Passager = PassagerDao.find(PassagerId);
-		return "PassagerEdit";
+		this.passager = passagerDao.find(PassagerId);
+		return "passagerEdit";
 	}
 
 	public String delete() {
-		PassagerDao.delete(PassagerDao.find(PassagerId));
-		return "Passager";
+		passagerDao.delete(passagerDao.find(PassagerId));
+		return "passager";
 	}
 }
