@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:p="http://primefaces.org/ui"
+	 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<title>Aeroport Ville</title>
+	
+</h:head>
+<h:body>
+<ui:include src="/menu.xhtml">
+		<ui:param name="i" value="8" />
+	 </ui:include>
+	<h:form id="formulaire">
+		<p:dataTable value="#{aeroportVilleBean.aeroportVilles}" var="aeroportVille">
+			<p:column headerText="Aeroport">
+            <h:outputText value="#{aeroportVille.aeroport.nom}" />
+			</p:column>
+			<p:column headerText="Ville">
+            <h:outputText value="#{aeroportVille.ville.nom}" />
+			</p:column>
+			
+		</p:dataTable>
+		<p:commandButton value="Ajouter" action="#{aeroportVilleBean.add}"/>
+	</h:form>
+</h:body>
+</html>

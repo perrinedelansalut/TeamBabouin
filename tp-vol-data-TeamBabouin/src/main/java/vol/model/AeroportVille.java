@@ -14,8 +14,8 @@ public class AeroportVille {
 
 	private Long id;
 	private int version;
-	private Aeroport aeroport;
-	private Ville ville;
+	private Aeroport aeroport=new Aeroport();
+	private Ville ville=new Ville();
 
 	public AeroportVille() {
 	}

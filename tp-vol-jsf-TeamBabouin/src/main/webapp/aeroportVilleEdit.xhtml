@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<f:view locale="#{changeLocale.locale}">
+	<h:head>
+		<title>"Edition"</title>
+
+
+	</h:head>
+	<h:body>
+		<ui:include src="/menu.xhtml">
+			<ui:param name="i" value="1" />
+		</ui:include>
+		<h:form id="formulaire">
+			<p:panel>
+				<p:messages autoUpdate="true" />
+				<h:inputHidden value="#{aeroportVilleBean.aeroportVille.id}" />
+				<h:inputHidden value="#{aeroportVilleBean.aeroportVille.version}"/>
+				<h:panelGrid id="grid" columns="3" cellpadding="5">
+
+					<h:outputText value="Ville" style="font-weight:bold" />
+					<p:selectOneListbox id="ville" value="#{aeroportVilleBean.aeroportVille.ville.idVil}" size="1" required="true">
+						<f:selectItem itemLabel="#{msg['reservationEdit.selectionner']}"/>
+						<f:selectItems value="#{aeroportVilleBean.villes}" var="ville" itemValue="#{ville.idVil}" itemLabel="#{ville.nom}"/>	
+					</p:selectOneListbox>
+					<p:message for="ville"/>
+					
+					<h:outputText value="Aeroport" style="font-weight:bold" />
+					<p:selectOneListbox id="aeroport" value="#{aeroportVilleBean.aeroportVille.aeroport.idAer}" size="1" required="true">
+						<f:selectItem itemLabel="#{msg['reservationEdit.selectionner']}"/>
+						<f:selectItems value="#{aeroportVilleBean.aeroports}" var="aeroport" itemValue="#{aeroport.idAer}" itemLabel="#{aeroport.nom}"/>	
+					</p:selectOneListbox>
+					<p:message for="aeroport"/>
+
+
+
+				</h:panelGrid>
+				<p>
+					<p:commandButton type="submit" value="#{msg['aeroportEdit.save']}"
+						action="#{aeroportVilleBean.save}" ajax="false" />
+					<p:commandButton value="#{msg['aeroportEdit.return']}"
+						action="aeroportVille" immediate="true" ajax="false" />
+				</p>
+
+			</p:panel>
+
+
+
+		</h:form>
+	</h:body>
+</f:view>
+</html>
+
