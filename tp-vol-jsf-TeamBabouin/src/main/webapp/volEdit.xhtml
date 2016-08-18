@@ -32,19 +32,19 @@
 				<p:inputText id="dtResa2" value="#{volBean.vol.dateArrivee}" converterMessage="#{msg['volEdit.dateerreur2']}">
 					<f:convertDateTime pattern="dd/MM/yyyy"/>
 				</p:inputText>
-				<p:message for="dtResa"/>
+				<p:message for="dtResa2"/>
 				
 				<h:outputText value="#{msg['volEdit.valeurheuredepart']}" style="font-weight:bold" />
 				<p:inputText id="dtResa3" value="#{volBean.vol.heureDepart}" converterMessage="#{msg['volEdit.dateerreur3']}">
 					<f:convertDateTime pattern="HH:mm"/>
 				</p:inputText>
-				<p:message for="dtResa"/>
+				<p:message for="dtResa3"/>
 				
 				<h:outputText value="#{msg['volEdit.valeurheurearrivee']}" style="font-weight:bold" />
 				<p:inputText id="dtResa4" value="#{volBean.vol.heureArrivee}" converterMessage="#{msg['volEdit.dateerreur4']}">
 					<f:convertDateTime pattern="HH:mm"/>
 				</p:inputText>
-				<p:message for="dtResa"/>
+				<p:message for="dtResa4"/>
                 
                 
 		</h:panelGrid>
