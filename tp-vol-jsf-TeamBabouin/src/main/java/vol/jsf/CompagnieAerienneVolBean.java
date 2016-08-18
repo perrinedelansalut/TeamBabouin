@@ -19,7 +19,9 @@ public class CompagnieAerienneVolBean {
 
 	@Autowired
 	private CompagnieAerienneVolDao compagnieAerienneVolDao;
+	@Autowired
 	private CompagnieAerienneDao compagnieAerienneDao;
+	@Autowired
 	private VolDao volDao;
 
 	private Integer compagnieAerienneVolId;
@@ -31,6 +33,14 @@ public class CompagnieAerienneVolBean {
 
 	
 	
+	public CompagnieAerienneVol getCompagnieAerienneVol() {
+		return compagnieAerienneVol;
+	}
+
+	public void setCompagnieAerienneVol(CompagnieAerienneVol compagnieAerienneVol) {
+		this.compagnieAerienneVol = compagnieAerienneVol;
+	}
+
 	public Integer getCompagnieAerienneVolId() {
 		return compagnieAerienneVolId;
 	}
@@ -59,6 +69,14 @@ public class CompagnieAerienneVolBean {
 	
 	public List<CompagnieAerienneVol> getCompagnieAerienneVols() {
 		return compagnieAerienneVolDao.findAll();
+	}
+	
+	public List<Vol> getVols() {
+		return volDao.findAll();
+	}
+	
+	public List<CompagnieAerienne> getCompagnieAeriennes() {
+		return compagnieAerienneDao.findAll();
 	}
 	
 	public String add() {

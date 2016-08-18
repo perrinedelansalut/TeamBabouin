@@ -8,47 +8,81 @@
 
 <f:view locale="#{changeLocale.locale}">
 	<h:head>
-		<title>#{msg['compagnieAerienneEdit.titre']}</title>
-		
+		<title>#{msg['compagnieAerienneVolEdit.titre']}</title>
+
 
 	</h:head>
 	<h:body>
 		<ui:include src="/menu.xhtml" />
 
 
-		<h:form id="formulaire">	
+		<h:form id="formulaire">
 			<p:panel>
 
 				<p:messages autoUpdate="true" />
 
-				<h:inputHidden id="id" value="#{compagnieAerienneBean.compagnieAerienne.id}" />
-				<h:inputHidden id="version" value="#{compagnieAerienneBean.compagnieAerienne.version}" />
+				<h:inputHidden id="id"
+					value="#{compagnieAerienneVolBean.compagnieAerienneVol.id}" />
+				<h:inputHidden id="version"
+					value="#{compagnieAerienneVolBean.compagnieAerienneVol.version}" />
 
 				<h:panelGrid id="grid" columns="3" cellpadding="5">
 
-					<h:outputLabel for="nom" value="#{msg['compagnieAerienneEdit.nom']}"
+					<h:outputLabel value="#{msg['compagnieAerienneVolEdit.numero']}"
 						style="font-weight:bold" />
-					<p:inputText id="nom" value="#{compagnieAerienneBean.compagnieAerienne.nom}"
-						required="true" requiredMessage="#{msg['compagnieAerienneEdit.err2']}"
-						validatorMessage="#{msg['compagnieAerienneEdit.err1']}">
+					<p:inputText id="numero"
+						value="#{compagnieAerienneVolBean.compagnieAerienneVol.numero}"
+						required="true"
+						requiredMessage="#{msg['compagnieAerienneVolEdit.err2']}"
+						validatorMessage="#{msg['compagnieAerienneVolEdit.err1']}">
 						<f:validateLength minimum="3" />
 					</p:inputText>
-					<p:message for="nom" />
+					<p:message for="numero" />
 
-					
+					<h:outputText value="#{msg['compagnieAerienneVolEdit.ouvert']}" />
+					<p:selectBooleanCheckbox id="ouvert"
+						value="#{compagnieAerienneVolBean.compagnieAerienneVol.ouvert}" />
+					<p:message for="ouvert" />
+
+					<h:outputText value="#{msg['compagnieAerienneVolEdit.vol.idVol']}"
+						style="font-weight:bold" />
+					<p:selectOneListbox id="vol"
+						value="#{compagnieAerienneVolBean.compagnieAerienneVol.vol.idVol}" size="1"
+						required="true"
+						requiredMessage="#{msg['compagnieAerienneVolEdit.etaterreur']}">
+						<f:selectItem itemLabel="#{msg['compagnieAerienneVolEdit.selectionner']}" />
+						<f:selectItems value="#{CompagnieAerienneVolBean.vols}" var="vol"
+							itemValue="#{vol.idVol}"
+							itemLabel="#{vol.idVol}" />
+					</p:selectOneListbox>
+					<p:message for="vol" />
+
+					<h:outputText value="#{msg['compagnieAerienneVolEdit.compagnieAerienne.nom']}"
+						style="font-weight:bold" />
+					<p:selectOneListbox id="compagnieAerienne"
+						value="#{compagnieAerienneVolBean.compagnieAerienneVol.compagnieAerienne.id}" size="1"
+						required="true"
+						requiredMessage="#{msg['compagnieAerienneVolEdit.etaterreur']}">
+						<f:selectItem itemLabel="#{msg['compagnieAerienneVolEdit.selectionner']}" />
+						<f:selectItems value="#{compagnieAerienneVolBean.vols}" var="compagnieAerienne"
+							itemValue="#{compagnieAerienne.id}"
+							itemLabel="#{CompagnieAerienne.nom}" />
+					</p:selectOneListbox>
+					<p:message for="compagnieAerienne" />
 
 				</h:panelGrid>
 				<p>
-					<p:commandButton type="submit" value="#{msg['compagnieAerienneEdit.save']}"
-						action="#{compagnieAerienneBean.save}" ajax="false" />
-					<p:commandButton value="#{msg['compagnieAerienneEdit.return']}"
-						action="compagnieAerienne" immediate="true" ajax="false" />
+					<p:commandButton type="submit"
+						value="#{msg['compagnieAerienneVolEdit.save']}"
+						action="#{compagnieAerienneVolBean.save}" ajax="false" />
+					<p:commandButton value="#{msg['compagnieAerienneVolEdit.return']}"
+						action="compagnieAerienneVol" immediate="true" ajax="false" />
 				</p>
 
 			</p:panel>
-			
-			
-			
+
+
+
 		</h:form>
 	</h:body>
 </f:view>
