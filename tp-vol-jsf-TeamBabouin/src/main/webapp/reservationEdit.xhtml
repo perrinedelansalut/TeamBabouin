@@ -8,7 +8,7 @@
 
 <f:view>
 	<h:head>
-		<title>"#{msg['reservationEdit.titre']}"</title>
+		<title>#{msg['reservationEdit.titre']}</title>
 	</h:head>
 	<h:body>
 	<ui:include src="/menu.xhtml" />
@@ -47,6 +47,13 @@
 					<f:selectItems value="#{passagerBean.passagers}" var="passager" itemValue="#{passager.idPas}" itemLabel="#{passager.nom} #{passager.prenom}"/>	
 				</p:selectOneListbox>
 				<p:message for="passager"/>
+				
+				<h:outputText value="#{msg['reservationEdit.client.nom']}" style="font-weight:bold" />
+				<p:selectOneListbox id="client" value="#{reservationBean.reservation.client.idCli}" size="1" required="true" requiredMessage="#{msg['reservationEdit.etaterreur']}">
+					<f:selectItem itemLabel="#{msg['reservationEdit.selectionner']}"/>
+					<f:selectItems value="#{clientBean.clients}" var="client" itemValue="#{client.idCli}" itemLabel="#{client.nom}"/>	
+				</p:selectOneListbox>
+				<p:message for="client"/>
 				
 		</h:panelGrid>
 			<p>

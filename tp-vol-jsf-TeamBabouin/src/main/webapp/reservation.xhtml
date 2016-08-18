@@ -9,7 +9,7 @@
 	
 
 <h:head>
-	<title>"#{msg['reservation.titre']}"</title>
+	<title>#{msg['reservation.titre']}</title>
 </h:head>
 <h:body>
 
@@ -37,6 +37,10 @@
 			
 			<p:column headerText="#{msg['reservation.passager.nom']}">
             <h:outputText value="#{reservation.passager.nom}" />
+			</p:column>
+			
+			<p:column headerText="#{msg['reservation.client.nom']}">
+            <h:outputText value="#{reservation.client.nom}" />
 			</p:column>
 			
 			<p:column headerText="#{msg['reservation.editer']}">

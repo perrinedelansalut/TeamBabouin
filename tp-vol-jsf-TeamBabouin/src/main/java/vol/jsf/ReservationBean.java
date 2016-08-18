@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import vol.model.Client;
+import vol.model.ClientEI;
 import vol.model.EtatReservation;
 import vol.model.Passager;
 import vol.model.Reservation;
+import vol.model.dao.ClientDao;
 import vol.model.dao.PassagerDao;
 import vol.model.dao.ReservationDao;   
 
@@ -19,6 +22,7 @@ public class ReservationBean {
 	@Autowired
 	private ReservationDao reservationDao;
 	private PassagerDao passagerDao;
+	private ClientDao clientDao;
 	
 	private Reservation reservation = new Reservation();
 
@@ -69,6 +73,10 @@ public class ReservationBean {
 		return passagerDao.findAll();
 	}
 	
+	public List<Client>getClients(){
+		return clientDao.findAll();
+	}
+	
 	public String add() {
 		return "reservationEdit";
 	}
@@ -77,6 +85,9 @@ public class ReservationBean {
 		this.reservation = reservationDao.find(reservationId);
 		if(this.reservation.getPassager()==null) {
 			this.reservation.setPassager(new Passager());
+		}
+		if(this.reservation.getClient()==null){
+			this.reservation.setClient(new ClientEI());
 		}
 		return "reservationEdit";
 	}
