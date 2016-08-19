@@ -9,7 +9,7 @@
 
 
 <h:head>
-	<title>"#{msg['vol.titre']}"</title>
+	<title>#{msg['vol.titre']}</title>
 </h:head>
 <h:body>
 	<ui:include src="/menu.xhtml">
@@ -19,16 +19,13 @@
 	<h:form id="formulaire">
 		<p:dataTable value="#{volBean.vols}" var="vol">
 
+			<p:column headerText="#{msg['vol.aeroportdepart']}">
+				<h:outputText value="#{vol.aeroportDepart.nom}" />
+			</p:column>
+
 			<p:column headerText="#{msg['vol.valeurdatedepart']}">
 
 				<h:outputText value="#{vol.dateDepart}">
-					<f:convertDateTime pattern="dd/MM/yyyy" />
-				</h:outputText>
-			</p:column>
-
-			<p:column headerText="#{msg['vol.valeurdatearrivee']}">
-
-				<h:outputText value="#{vol.dateArrivee}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
 			</p:column>
@@ -37,6 +34,19 @@
 
 				<h:outputText value="#{vol.heureDepart}">
 					<f:convertDateTime pattern="HH:mm" />
+				</h:outputText>
+			</p:column>
+
+			<p:column headerText="#{msg['vol.aeroportarrivee']}">
+				<h:outputText value="#{vol.aeroportArrivee.nom}" />
+			</p:column>
+
+
+
+			<p:column headerText="#{msg['vol.valeurdatearrivee']}">
+
+				<h:outputText value="#{vol.dateArrivee}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
 			</p:column>
 
