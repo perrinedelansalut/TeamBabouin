@@ -67,7 +67,7 @@
 					<p:message for="login" />
 
 					<h:outputText value="#{msg['clientEdit.log.mdp']}" />
-					<p:password id="motDePasse"
+					<p:password id="motDePasse" redisplay="true"
 						value="#{clientBean.selectedClientMoral.log.motDePasse}" />
 					<p:message for="motDePasse" />
 
@@ -93,7 +93,7 @@
 
 					<h:outputText value="#{msg['clientEdit.adresse.pays']}" />
 					<p:inputText id="pays"
-						value="#{clientBean.selectedClientEI.adresse.pays}" />
+						value="#{clientBean.selectedClientMoral.adresse.pays}" />
 					<p:message for="pays" />
 				</h:panelGrid>
 				<p>

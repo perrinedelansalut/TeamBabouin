@@ -15,19 +15,19 @@ import vol.model.Client;
 
 @Repository
 @Transactional
-public class ClientDaoJpa implements ClientDao{
-	
+public class ClientDaoJpa implements ClientDao {
+
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	public Client find(Integer id) {
 		return em.find(Client.class, id);
 	}
 
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	public List<Client> findAll() {
 		Query query = em.createQuery("select c from Client c");
 		return query.getResultList();
@@ -46,10 +46,13 @@ public class ClientDaoJpa implements ClientDao{
 	@Override
 	public void delete(Client obj) {
 		em.remove(em.merge(obj));
+	}
+
+	@Override
+	public List<Integer> statsTypeClient() {
+		Query query = em.createQuery("select COUNT(c) from Client as c GROUP BY c.typeClient");
+		// Query query = em.createQuery("select COUNT(c) from Client as c LEFT
+		// OUTER JOIN c.Reservation r GROUP BY c.typeClient");
+		return query.getResultList();
+	}
 }
-	
-}
-
-
-
-

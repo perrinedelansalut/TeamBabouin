@@ -176,7 +176,7 @@ public class RandomData {
 		this.ville = listVille[rand];
 
 		rand = (int) (Math.random() * (listRue.length));
-		this.rue = ((int) (Math.random() * 30)) + " " + listRue[rand];
+		this.rue = (1 + (int) (Math.random() * 30)) + " " + listRue[rand];
 
 		this.pays = "France";
 

@@ -3,6 +3,8 @@
  */
 package vol.model.dao;
 
+import java.util.List;
+
 import vol.model.Client;
 
 /**
@@ -11,4 +13,5 @@ import vol.model.Client;
  */
 public interface ClientDao extends Dao<Client, Integer> {
 
+	List<Integer> statsTypeClient();
 }

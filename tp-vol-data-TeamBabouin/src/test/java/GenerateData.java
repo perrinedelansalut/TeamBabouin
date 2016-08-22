@@ -42,14 +42,14 @@ public class GenerateData {
 
 	public static void main(String[] args) {
 
-		ajoutPassager(50);
-		ajoutClient(30);
+		ajoutPassager(150);
+		ajoutClient(120);
 		ajoutVille();
-		ajoutAeroport();
+		ajoutAeroport(35);
 		ajoutCompagnieAerienne();
-		ajoutVol(50);
-		ajoutEscale(20);
-		ajoutReservation(35);
+		ajoutVol(250);
+		ajoutEscale(25);
+		ajoutReservation(200);
 	}
 
 	public static void ajoutPassager(int imax) {
@@ -88,13 +88,14 @@ public class GenerateData {
 
 			if ((rand <= 50) && (rand > 20)) {
 				client = new ClientMoral();
+				client.setNumeroFax(data.getNumeroTel());
 				((ClientMoral) client).setSiret((int) (Math.random() * (10100) + 1000));
 
 			}
 			if (rand <= 20) {
 				client = new ClientEI();
 				((ClientEI) client).setPrenom(data.getPrenom());
-
+				client.setNumeroFax(data.getNumeroTel());
 			}
 
 			if (data.isSexe()) {
@@ -112,7 +113,6 @@ public class GenerateData {
 			client.setAdresse(new Adresse(data.getRue(), data.getCodePostal(), data.getVille(), data.getPays()));
 			client.setEmail(data.getEmail());
 			client.setLog(data.getUsername(), data.getPassword(), data.isBooleen());
-			client.setNumeroTel(data.getNumeroTel());
 			client.setNumeroTel(data.getNumeroTel());
 
 			clientDao.create(client);
@@ -135,21 +135,18 @@ public class GenerateData {
 		listVille = villeDao.findAll();
 	}
 
-	public static void ajoutAeroport() {
+	public static void ajoutAeroport(int trigger) {
 
 		AeroportDao aeroportDao = (AeroportDao) context.getBean("aeroportDaoJpa");
 		RandomData data = new RandomData();
 
-		int i = 0;
-		for (String v : data.getListVille()) {
-			Aeroport aeroport = new Aeroport();
-			aeroport.setNom("Aéroport " + v);
-			aeroportDao.create(aeroport);
+		for (String ville : data.getListVille()) {
 
-			if (i == 10) {
-				break;
+			if ((int) (Math.random() * (100)) < trigger) {
+				Aeroport aeroport = new Aeroport();
+				aeroport.setNom("Aéroport " + ville);
+				aeroportDao.create(aeroport);
 			}
-			i++;
 		}
 
 		listAeroport = aeroportDao.findAll();
@@ -180,8 +177,9 @@ public class GenerateData {
 
 			RandomData data = new RandomData();
 
-			int indexDepart = (int) (Math.random() * listAeroport.size());
-			int indexArrive = indexDepart + (int) (Math.random() * (listAeroport.size() - (1 + indexDepart)));
+			int indexDepart = (int) (Math.random() * (listAeroport.size() * 0.4));
+			int indexArrive = (int) ((listAeroport.size() * 0.6)
+					+ (int) (Math.random() * (listAeroport.size() - (listAeroport.size() * 0.6))));
 
 			Vol vol = new Vol();
 			vol.setAeroportDepart(listAeroport.get(indexDepart));
@@ -197,29 +195,33 @@ public class GenerateData {
 		listVol = volDao.findAll();
 	}
 
-	public static void ajoutEscale(int imax) {
+	public static void ajoutEscale(int trigger) {
 
 		EscaleDao escaleDao = (EscaleDao) context.getBean("escaleDaoJpa");
 
-		for (int i = 1; i <= imax; i++) {
+		for (Vol vol : listVol) {
 
-			RandomData data = new RandomData();
+			if ((int) (Math.random() * (100)) < trigger) {
+				RandomData data = new RandomData();
 
-			int indexVol = (int) (Math.random() * listVol.size());
-			int indexEscale = (int) (Math.random() * (listAeroport.size()));
+				int indexArrive = (int) ((listAeroport.size() * 0.4)
+						+ (int) (Math.random() * ((listAeroport.size() * 0.6) - (listAeroport.size() * 0.4))));
+				int indexEscale = (int) (Math.random() * (listAeroport.size()));
 
-			Escale escale = new Escale();
+				Escale escale = new Escale();
 
-			escale.setId(listVol.get(indexVol), listAeroport.get(indexEscale));
-			escale.setDateDepart(listVol.get(indexVol).getDateDepart());
-			// escale.setHeureDepart((Time)
-			// listVol.get(indexVol).getDateDepart());
-			escale.setDateArrivee(listVol.get(indexVol).getDateArrivee());
-			// escale.setHeureArrivee((Time)
-			// listVol.get(indexVol).getDateArrivee());
+				escale.setId(vol, listAeroport.get(indexEscale));
+				escale.setDateDepart(vol.getDateDepart());
+				// escale.setHeureDepart((Time)
+				// listVol.get(indexVol).getDateDepart());
+				escale.setDateArrivee(vol.getDateArrivee());
+				// escale.setHeureArrivee((Time)
+				// listVol.get(indexVol).getDateArrivee());
 
-			escaleDao.create(escale);
+				escaleDao.create(escale);
+			}
 		}
+
 		listEscale = escaleDao.findAll();
 	}
 
@@ -241,14 +243,14 @@ public class GenerateData {
 			reservation.setVol(listVol.get(indexVol));
 
 			reservation.setDate(data.getDatePassee());
-			
-			if(data.isBooleen())
+
+			if (data.isBooleen())
 				reservation.setEtatReservation(EtatReservation.ouvert);
 			else
 				reservation.setEtatReservation(EtatReservation.ferme);
-			
+
 			reservation.setNumero(data.generateString(6, "1234567890"));
-			
+
 			reservationDao.create(reservation);
 		}
 
